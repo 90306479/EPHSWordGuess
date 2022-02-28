@@ -10,18 +10,93 @@ import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
     
+
+    @IBOutlet weak var grabImage: UIView!
+    
+    @IBOutlet weak var guessValue: UITextField!
+    
+    var currentGuess: String = ""
+    
+    var caption = "Want to play Wordle?"
+    
+    @IBOutlet weak var guessLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func clickedGuess(_ sender: UIButton) {
+        
+        currentGuess = guessValue.text!
+        guessLabel.text = currentGuess
+        
+        let url = prepareURL()
+        prepareMessage(url)
+    }
+    
+    
+    func prepareURL() -> URL {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https";
+        urlComponents.host = "www.ebookfrenzy.com";
+        let guessQuery = URLQueryItem(name: "Guess", value: currentGuess)
+        urlComponents.queryItems = [guessQuery]
+        return urlComponents.url!
+        
+    }
+    
+    func prepareMessage(_ url: URL) {
+        
+        let message = MSMessage()
+        
+        let layout = MSMessageTemplateLayout()
+        layout.caption = caption
+        
+        UIGraphicsBeginImageContextWithOptions(grabImage.bounds.size, grabImage.isOpaque, 0);
+        self.grabImage.drawHierarchy(in: grabImage.bounds, afterScreenUpdates: true)
+        
+        layout.image = UIGraphicsGetImageFromCurrentImageContext()!;
+        UIGraphicsEndImageContext();
+        
+        message.layout = layout
+        message.url = url
+        
+        let conversation = self.activeConversation
+        
+        conversation?.insert(message, completionHandler: {(error) in
+            if let error = error {
+                print(error)
+            }
+        })
+        
+        self.dismiss()
+        
+    }
+    
+    func decodeURL(_ url: URL) {
+        
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        
+        for (index, queryItem) in (components?.queryItems?.enumerated())! {
+            if queryItem.name == "Guess" {
+                currentGuess = queryItem.value ?? ""
+            }
+        }
+    }
+    
+    
+    
     // MARK: - Conversation Handling
     
     override func willBecomeActive(with conversation: MSConversation) {
-        // Called when the extension is about to move from the inactive to active state.
-        // This will happen when the extension is about to present UI.
         
-        // Use this method to configure the extension and restore previously stored state.
+        if let messageURL = conversation.selectedMessage?.url {
+            decodeURL(messageURL)
+            caption = "It's your move!"
+        }
+       
     }
     
     override func didResignActive(with conversation: MSConversation) {
