@@ -10,12 +10,18 @@ import Messages
 
 class MessagesViewController: MSMessagesAppViewController {
     
-
-    @IBOutlet weak var grabImage: UIView!
     
     @IBOutlet weak var guessValue: UITextField!
     
+    
+    @IBOutlet weak var previousGuess: UILabel!
+    
+    
+    var guesses = ""
+    
     var currentGuess: String = ""
+    
+    var lastGuess: String = ""
     
     var caption = "Want to play Wordle?"
     
@@ -30,6 +36,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
         currentGuess = guessValue.text!
         guessLabel.text = currentGuess
+        guesses = guesses + " " + currentGuess
         
         let url = prepareURL()
         prepareMessage(url)
@@ -42,7 +49,8 @@ class MessagesViewController: MSMessagesAppViewController {
         urlComponents.scheme = "https";
         urlComponents.host = "www.ebookfrenzy.com";
         let guessQuery = URLQueryItem(name: "Guess", value: currentGuess)
-        urlComponents.queryItems = [guessQuery]
+        let allGuessesQuery = URLQueryItem(name: "allGuesses", value: guesses)
+        urlComponents.queryItems = [guessQuery, allGuessesQuery]
         return urlComponents.url!
         
     }
@@ -54,11 +62,7 @@ class MessagesViewController: MSMessagesAppViewController {
         let layout = MSMessageTemplateLayout()
         layout.caption = caption
         
-        UIGraphicsBeginImageContextWithOptions(grabImage.bounds.size, grabImage.isOpaque, 0);
-        self.grabImage.drawHierarchy(in: grabImage.bounds, afterScreenUpdates: true)
-        
-        layout.image = UIGraphicsGetImageFromCurrentImageContext()!;
-        UIGraphicsEndImageContext();
+        layout.image = UIImage(named: "icon")
         
         message.layout = layout
         message.url = url
@@ -80,8 +84,13 @@ class MessagesViewController: MSMessagesAppViewController {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         
         for (index, queryItem) in (components?.queryItems?.enumerated())! {
-            if queryItem.name == "Guess" {
-                currentGuess = queryItem.value ?? ""
+//            if queryItem.name == "Guess" {
+//                lastGuess = queryItem.value ?? ""
+//                previousGuess.text = lastGuess
+//            }
+            if queryItem.name == "allGuesses" {
+                guesses = queryItem.value ?? ""
+                previousGuess.text = guesses
             }
         }
     }
