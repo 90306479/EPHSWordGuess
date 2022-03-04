@@ -176,24 +176,7 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBAction func GoTap(_ sender: Any) {
         
         if (fifthLetLabel.text != "") {
-            
-            var letOne = firstLetLabel.text
-            var letTwo = secondLetLabel.text
-            var letThree = thirdLetLabel.text
-            var letFour = fourthLetLabel.text
-            var letFive = fifthLetLabel.text
-        
-            for word in wordOptions {
-                if ((checkWordLetter(num: 0, word: word) == letOne) && (checkWordLetter(num: 1, word: word) == letTwo) && (checkWordLetter(num: 2, word: word) == letThree) && (checkWordLetter(num: 3, word: word) == letFour) && (checkWordLetter(num: 4, word: word) == letFive)) {
-                    isActualWord = true
-                }
-            }
-            if isActualWord {
-                errorLabel.text = guessedWord
-                setLabelColors()
-            } else {
-                errorLabel.text = "Word not found in word list"
-            }
+            setLabelColors()
         }
     }
     
