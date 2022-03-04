@@ -17,6 +17,10 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBOutlet weak var fifthLetLabel: UILabel!
     @IBOutlet weak var hiddenLabel: UILabel!
     
+    var currentLabel: UILabel!
+    
+    
+    
     @IBOutlet weak var QKey: UIButton!
     @IBOutlet weak var WKey: UIButton!
     @IBOutlet weak var EKey: UIButton!
@@ -46,22 +50,31 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBOutlet weak var BackKey: UIButton!
     @IBOutlet weak var GoKey: UIButton!
     
-    
-    @IBOutlet weak var errorLabel: UILabel!
-    
-    
-    var currentLabel: UILabel!
-    
-    var keyButtons:[UIButton]!
     var letterLabels:[UILabel]!
+    var keyButtons:[UIButton]!
     
-    let wordOptions:[String] = ["ABASE", "ABATE", "ABBEY", "ABBOT", "ABEND", "ABHOR", "ABIDE", "ABLED", "ABLES", "ABODE", "ABORT", "ABOUT", "ABOVE", "ABUSE", "ABYSS", "ACHED", "ACHES", "ACIDS", "ACING", "ACORN", "ACRES", "ACTED", "ACTOR", "ADAGE", "ADAPT", "ADDED", "ADDER", "ADIEU", "ADIOS", "ADLIB", "ADMIT", "ADOPT", "ADORE", "ADORN", "ADULT", "AFFIX", "AFOOT", "AFORE", "AFOUL", "AGENT", "AGGRO", "AGILE", "AGONY", "AHEAD", "AILED", "AIMED", "AIRED", "AISLE", "AITCH", "ALARM", "ALBUM", "ALDER", "ALEPH", "ALERT", "ALGAE", "ALIBI", "ALIGN", "ALIKE", "ALLAY", "ALLEY", "ALLOT", "ALLOW", "ALLOY", "ALOFT", "ALOHA", "ALONE", "ALOOF", "ALOUD", "ALPHA", "AMAZE", "AMBER", "AMBLE", "AMIGO", "AMITY", "AMPLY", "AMUSE", "ANGEL", "ANGRY", "ANGST", "ANKLE", "ANNEX", "ANNOY", "ANNUL", "ANODE", "ANVIL", "AORTA", "APART", "APPLE", "APRON", "APTLY", "AREAS", "ARIAS", "ARMOR", "AROMA", "ARROW", "ARSED", "ASIDE", "ASKED", "ASKEW", "ATLAS", "ATOLL", "ATTIC", "AUDIO", "AUNTS", "AURAL", "AZURE", "BACKS", "BACON", "BAGEL", "BALSA", "BANAL", "BANJO", "BARDS", "BARED", "BARES", "BARFS", "BARGE", "BARNS", "BARON", "BASIC", "BASIL", "BASIS", "BASSY", "BATCH", "BATON", "BAYED", "BEACH", "BEATS", "BEAUX", "BEEFS", "BEEFY", "BEEPS", "BEERS", "BEERY", "BEETS", "BEGAN", "BEGAT", "BEGET", "BEGOT", "BEIGE", "BELIE", "BERET", "BESET", "BEVVY", "BILLS", "BIRDS", "BLADE", "BLAST", "BLIMP", "BLUNT", "BLURB", "BLURP", "BLURS", "BLURT", "BLUSH", "BOAST", "BOGEY", "BOLTS", "BONGO", "BOOST", "BOOTH", "BORON", "BOZOS", "BRAGS", "BREAD", "BROWN", "BUGLE", "BUZBY", "CABER", "CAMEL", "CANDY", "CAPER", "CAPON", "CARRY", "CARTS", "CARVE", "CEDAR", "CEDES", "CELEB", "CELLO", "CENTS", "CHARY", "CHEAP", "CHEAT", "CHEWY", "CHICK", "CHIME", "CHIMP", "CHING", "CIDER", "CLAMS", "CLEFT", "CLOSE", "CLOWN", "CLUNK", "COALS", "COBRA", "COCOA", "CODEC", "COLOR", "COLTS", "COMET", "CONDO", "CONGA", "COPSE", "CORGI", "CORKS", "COUPS", "COWED", "COWLS", "CRABS", "CROWD", "CROWS", "CURES", "CURIA", "CURIO", "CUTES", "DALEK", "DAWNS", "DECOR", "DECRY", "DEIFY", "DENIM", "DEPOT", "DESKS", "DICED", "DINAR", "DINED", "DINGY", "DISKS", "DIZZY", "DODOS", "DOILY", "DOLED", "DOUSE", "DOVES", "DRABS", "DRESS", "DRIBS", "DRIVE", "DROID", "DRONE", "DROOL", "DROOP", "DROPS", "DROSS", "DUCHY", "DUMPY", "DUNNY", "DUPER", "EBONY", "EIGHT", "EPOXY", "EXACT", "EXUDE", "FANGS", "FARTS", "FATHA", "FATTY", "FAVOR", "FAZED", "FECES", "FEINT", "FERNS", "FERRY", "FIBRO", "FIFTH", "FIFTY", "FILTH", "FINCH", "FINKS", "FLOSS", "FORTE", "FORTY", "FOULS", "FOURS", "FOXED", "FOXES", "FROCK", "FUCKS", "FUMES", "GABLE", "GAILY", "GAINS", "GALED", "GALES", "GALLS", "GAMED", "GAMER", "GAMES", "GAMMA", "GANGS", "GANJA", "GASES", "GASPS", "GATED", "GATES", "GAUDY", "GAUGE", "GAUNT", "GAUZE", "GAWKY", "GAZED", "GEARS", "GECKO", "GEEKS", "GEEKY", "GEESE", "GENES", "GENII", "GENTS", "GERMS", "GHOST", "GIANT", "GIDDY", "GIFTS", "GILDS", "GILLS", "GILTS", "GIMME", "GINGE", "GIRTH", "GISTS", "GIVEN", "GIVER", "GIVES", "GIZMO", "GLADE", "GLARE", "GLASS", "GLEAM", "GLOBE", "GLOVE", "GLUTS", "GNOME", "GOALS", "GOATS", "GODLY", "GOLEM", "GORES", "GORSE", "GOTTA", "GOUDA", "GOURD", "GOUTS", "GRAPE", "GRAVE", "GREEB", "GREEN", "GROPE", "GROSS", "GROVE", "GRUBS", "GRUFF", "GRUNT", "GUARD", "GULPS", "HARMS", "HARPS", "HAULS", "HERDS", "HERON", "HOARD", "HONOR", "HUMOR", "HYPES", "INKED", "JAWED", "JILTS", "JOUST", "KAPUT", "KEELS", "KINDA", "KRONA", "LAGER", "LAMBS", "LAPEL", "LATHS", "LATTE", "LAXLY", "LIKEN", "LINGO", "LIRAS", "LOADS", "LOAFS", "LOCUM", "LOLLS", "LONES", "LOONY", "LOPES", "LUCKS", "LURES", "MACED", "MATED", "MENDS", "MIAOW", "MILER", "MILKY", "MOANS", "MOCKS", "MONEY", "MOSSY", "MUCKY", "MULES", "MUSED", "MUSES", "MUTER", "MUTHA", "NATTY", "NEGRO", "NOBBY", "NOOKS", "NUKED", "OFFAL", "OKAYS", "OLIVE", "OOMPH", "ORGAN", "PACER", "PALED", "PALER", "PALLY", "PAPPA", "PARES", "PASTA", "PAWNS", "PECAN", "PEEKS", "PENDS", "PENIS", "PENNY", "PEONY", "PEPPY", "PIGGY", "PINED", "PIZZA", "PLIES", "PLOYS", "POKED", "PONCE", "POOPS", "PORKS", "PORKY", "PROMO", "PRONG", "PUFFY", "PUREE", "PYGMY", "QUOTH", "RAFTS", "RAGED", "RAVER", "REALM", "REBID", "REEKY", "RETAR", "RHINO", "ROAMS", "ROVED", "RUDDY", "RUDER", "RUNTS", "RUPEE", "SACKS", "SALCO", "SARGE", "SCALP", "SEALS", "SENNA", "SEPIA", "SERGE", "SERIF", "SEXED", "SEXES", "SHAGS", "SHARE", "SHARK", "SHARP", "SHAWM", "SHEAF", "SHITE", "SIDLE", "SIGMA", "SILLY", "SINES", "SINEW", "SIRED", "SLING", "SLOES", "SLUNG", "SNAKE", "SNARL", "SNIPS", "SOLES", "SORTA", "SPAMS", "SPASM", "SPEWS", "SPIKY", "SQUIT", "STAGS", "STANK", "STOAT", "STORK", "STYLI", "SWAMP", "TABOR", "TAMER", "TAPAS", "TAUPE", "TELLY", "TEMPO", "TENOR", "THETA", "THIGH", "THONG", "TIARA", "TIGER", "TIGON", "TILTS", "TOADS", "TOKEN", "TOLLS", "TOPAZ", "TOPSY", "TORSO", "TORTS", "TOTES", "TRAIT", "TRAMP", "TRITE", "TROLL", "TROMP", "TUNAS", "TUPLE", "TURBO", "TURDS", "TURVY", "TUSKS", "TUTOR", "TWAIN", "TWANG", "TWATS", "TWEAK", "TWEED", "TWEEN", "TWEET", "TWERP", "TWICE", "TWIPS", "TWIRL", "TWIST", "TWITS", "TYPED", "TYRES", "TYTHE", "UNARJ", "UNDID", "URGES", "URINE", "URNED", "USHER", "USING", "USUAL", "VAGUS", "VALUE", "VANES", "VASES", "VIOLA", "VIOLS", "VIPER", "VIRGE", "VISAS", "VIXEN", "VOILA", "VOLES", "WAGED", "WAIFS", "WAKED", "WALTZ", "WANED", "WANKS", "WAXED", "WEEDS", "WEEDY", "WEENY", "WEEPS", "WHARF", "WHINY", "WHIPS", "WHIRL", "WHIRR", "WHISH", "WHISK", "WHIST", "WHITE", "WHOLE", "WHOOP", "WHORE", "WHOSE", "WHUPS", "WIDER", "WIDTH", "WIELD", "WILLS", "WILTS", "WIMPS", "WINCE", "WINCH", "WINDS", "WINDY", "WINED", "WINES", "WINKS", "WIPES", "WIRED", "WIRES", "WISED", "WISER", "WISES", "WISHY", "WITCH", "WOKEN", "WOLDS", "WOMAN", "WOMEN", "WOODS", "WOOZY", "WORDS", "WORLD", "WORMS", "WORRY", "WORSE", "WOULD", "WOUND", "WOVEN", "WOWED", "WRAPS", "WRATH", "WREAK", "WRECK", "WRENS", "WRING", "WRIST", "WRITS", "WRONG", "WROTE", "WROTH", "WRUNG", "XENON", "YABBA", "YACKS", "YAHOO", "YANKS", "YARDS", "YARNS", "YAWNS", "YEARS", "YEAST", "YECCH", "YELLS", "YELPS", "YIELD", "YIKES", "YODEL", "YOLKS", "YONKS", "YOUNG", "YOURS", "YOUSE", "YOUTH", "YUCCA", "YUCKY", "YUMMY", "ZEBRA", "ZILCH", "ZIPPY", "ZONED", "ZONES", "ZOOMS"]
+    
+    let wordOptions:[String] = ["ABASE", "ABATE", "ABBEY", "ABBOT", "ABEND", "ABHOR", "ABIDE", "ABLED", "ABLES", "ABODE", "ABORT", "ABOUT", "ABOVE", "ABUSE", "ABYSS", "ACHED", "ACHES", "ACIDS", "ACING", "ACORN", "ACRES", "ACTED", "ACTOR", "ADAGE", "ADAPT", "ADDED", "ADDER", "ADIEU", "ADIOS", "ADLIB", "ADMIT", "ADOPT", "ADORE", "ADORN", "ADULT", "AFFIX", "AFOOT", "AFORE", "AFOUL", "AGENT", "AGGRO", "AGILE", "AGONY", "AHEAD", "AILED", "AIMED", "AIRED", "AISLE", "AITCH", "ALARM", "ALBUM", "ALDER", "ALEPH", "ALERT", "ALGAE", "ALIBI", "ALIGN", "ALIKE", "ALLAY", "ALLEY", "ALLOT", "ALLOW", "ALLOY", "ALOFT", "ALOHA", "ALONE", "ALOOF", "ALOUD", "ALPHA", "AMAZE", "AMBER", "AMBLE", "AMIGO", "AMITY", "AMPLY", "AMUSE", "ANGEL", "ANGRY", "ANGST", "ANKLE", "ANNEX", "ANNOY", "ANNUL", "ANODE", "ANVIL", "AORTA", "APART", "APPLE", "APRON", "APTLY", "AREAS", "ARIAS", "ARMOR", "AROMA", "ARROW", "ARSED", "ASIDE", "ASKED", "ASKEW", "ATLAS", "ATOLL", "ATTIC", "AUDIO", "AUNTS", "AURAL", "AZURE", "BACKS", "BACON", "BAGEL", "BALSA", "BANAL", "BANJO", "BARDS", "BARED", "BARES", "BARFS", "BARGE", "BARNS", "BARON", "BASIC", "BASIL", "BASIS", "BASSY", "BATCH", "BATON", "BAYED", "BEACH", "BEATS", "BEAUX", "BEEFS", "BEEFY", "BEEPS", "BEERS", "BEERY", "BEETS", "BEGAN", "BEGAT", "BEGET", "BEGOT", "BEIGE", "BELIE", "BERET", "BESET", "BEVVY", "BILLS", "BIRDS", "BLADE", "BLAST", "BLIMP", "BLUNT", "BLURB", "BLURP", "BLURS", "BLURT", "BLUSH", "BOAST", "BOGEY", "BOLTS", "BONGO", "BOOST", "BOOTH", "BORON", "BOZOS", "BRAGS", "BREAD", "BROWN", "BUGLE", "BUZBY", "CABER", "CAMEL", "CANDY", "CAPER", "CAPON", "CARRY", "CARTS", "CARVE", "CATCH", "CEDAR", "CEDES", "CELEB", "CELLO", "CENTS", "CHARY", "CHEAP", "CHEAT", "CHEWY", "CHICK", "CHIME", "CHIMP", "CHING", "CIDER", "CLAMS", "CLEFT", "CLOSE", "CLOWN", "CLUNK", "COALS", "COBRA", "COCOA", "CODEC", "COLOR", "COLTS", "COMET", "CONDO", "CONGA", "COPSE", "CORGI", "CORKS", "COUPS", "COWED", "COWLS", "CRABS", "CROWD", "CROWS", "CURES", "CURIA", "CURIO", "CUTES", "DALEK", "DAWNS", "DECOR", "DECRY", "DEIFY", "DENIM", "DEPOT", "DESKS", "DICED", "DINAR", "DINED", "DINGY", "DISKS", "DIZZY", "DODOS", "DOILY", "DOLED", "DOUSE", "DOVES", "DRABS", "DRESS", "DRIBS", "DRIVE", "DROID", "DRONE", "DROOL", "DROOP", "DROPS", "DROSS", "DUCHY", "DUMPY", "DUNNY", "DUPER", "EBONY", "EIGHT", "EPOXY", "EXACT", "EXUDE", "FANGS", "FARTS", "FATHA", "FATTY", "FAVOR", "FAZED", "FECES", "FEINT", "FERNS", "FERRY", "FIBRO", "FIFTH", "FIFTY", "FILTH", "FINCH", "FINKS", "FLOSS", "FORTE", "FORTY", "FOULS", "FOURS", "FOXED", "FOXES", "FROCK", "FUCKS", "FUMES", "GABLE", "GAILY", "GAINS", "GALED", "GALES", "GALLS", "GAMED", "GAMER", "GAMES", "GAMMA", "GANGS", "GANJA", "GASES", "GASPS", "GATED", "GATES", "GAUDY", "GAUGE", "GAUNT", "GAUZE", "GAWKY", "GAZED", "GEARS", "GECKO", "GEEKS", "GEEKY", "GEESE", "GENES", "GENII", "GENTS", "GERMS", "GHOST", "GIANT", "GIDDY", "GIFTS", "GILDS", "GILLS", "GILTS", "GIMME", "GINGE", "GIRTH", "GISTS", "GIVEN", "GIVER", "GIVES", "GIZMO", "GLADE", "GLARE", "GLASS", "GLEAM", "GLOBE", "GLOVE", "GLUTS", "GNOME", "GOALS", "GOATS", "GODLY", "GOLEM", "GORES", "GORSE", "GOTTA", "GOUDA", "GOURD", "GOUTS", "GRAPE", "GRAVE", "GREEB", "GREEN", "GROPE", "GROSS", "GROVE", "GRUBS", "GRUFF", "GRUNT", "GUARD", "GULPS", "HARMS", "HARPS", "HAULS", "HERDS", "HERON", "HOARD", "HONOR", "HUMOR", "HYPES", "INKED", "JAWED", "JILTS", "JOUST", "KAPUT", "KEELS", "KINDA", "KRONA", "LAGER", "LAMBS", "LAPEL", "LATHS", "LATTE", "LAXLY", "LIKEN", "LINGO", "LIRAS", "LOADS", "LOAFS", "LOCUM", "LOLLS", "LONES", "LOONY", "LOPES", "LUCKS", "LURES", "MACED", "MATED", "MATCH", "MENDS", "MIAOW", "MILER", "MILKY", "MOANS", "MOCKS", "MONEY", "MOSSY", "MUCKY", "MULES", "MUSED", "MUSES", "MUTER", "MUTHA", "NATTY", "NEGRO", "NOBBY", "NOOKS", "NUKED", "OFFAL", "OKAYS", "OLIVE", "OOMPH", "ORGAN", "PACER", "PALED", "PALER", "PALLY", "PAPPA", "PARES", "PASTA", "PAWNS", "PECAN", "PEEKS", "PENDS", "PENIS", "PENNY", "PEONY", "PEPPY", "PIGGY", "PINED", "PIZZA", "PLIES", "PLOYS", "POKED", "PONCE", "POOPS", "PORKS", "PORKY", "PROMO", "PRONG", "PUFFY", "PUREE", "PYGMY", "QUOTH", "RAFTS", "RAGED", "RAVER", "REALM", "REBID", "REEKY", "RETAR", "RHINO", "ROAMS", "ROVED", "RUDDY", "RUDER", "RUNTS", "RUPEE", "SACKS", "SALCO", "SARGE", "SCALP", "SEALS", "SENNA", "SEPIA", "SERGE", "SERIF", "SEXED", "SEXES", "SHAGS", "SHARE", "SHARK", "SHARP", "SHAWM", "SHEAF", "SHITE", "SIDLE", "SIGMA", "SILLY", "SINES", "SINEW", "SIRED", "SLING", "SLOES", "SLUNG", "SNAKE", "SNARL", "SNIPS", "SOLES", "SORTA", "SPAMS", "SPASM", "SPEWS", "SPIKY", "SQUIT", "STAGS", "STANK", "STOAT", "STORK", "STYLI", "SWAMP", "TABOR", "TAMER", "TAPAS", "TAUPE", "TELLY", "TEMPO", "TENOR", "THETA", "THIGH", "THONG", "TIARA", "TIGER", "TIGON", "TILTS", "TOADS", "TOKEN", "TOLLS", "TOPAZ", "TOPSY", "TORSO", "TORTS", "TOTES", "TRAIT", "TRAMP", "TRITE", "TROLL", "TROMP", "TUNAS", "TUPLE", "TURBO", "TURDS", "TURVY", "TUSKS", "TUTOR", "TWAIN", "TWANG", "TWATS", "TWEAK", "TWEED", "TWEEN", "TWEET", "TWERP", "TWICE", "TWIPS", "TWIRL", "TWIST", "TWITS", "TYPED", "TYRES", "TYTHE", "UNARJ", "UNDID", "URGES", "URINE", "URNED", "USHER", "USING", "USUAL", "VAGUS", "VALUE", "VANES", "VASES", "VIOLA", "VIOLS", "VIPER", "VIRGE", "VISAS", "VIXEN", "VOILA", "VOLES", "WAGED", "WAIFS", "WAKED", "WALTZ", "WANED", "WANKS", "WAXED", "WEEDS", "WEEDY", "WEENY", "WEEPS", "WHARF", "WHINY", "WHIPS", "WHIRL", "WHIRR", "WHISH", "WHISK", "WHIST", "WHITE", "WHOLE", "WHOOP", "WHORE", "WHOSE", "WHUPS", "WIDER", "WIDTH", "WIELD", "WILLS", "WILTS", "WIMPS", "WINCE", "WINCH", "WINDS", "WINDY", "WINED", "WINES", "WINKS", "WIPES", "WIRED", "WIRES", "WISED", "WISER", "WISES", "WISHY", "WITCH", "WOKEN", "WOLDS", "WOMAN", "WOMEN", "WOODS", "WOOZY", "WORDS", "WORLD", "WORMS", "WORRY", "WORSE", "WOULD", "WOUND", "WOVEN", "WOWED", "WRAPS", "WRATH", "WREAK", "WRECK", "WRENS", "WRING", "WRIST", "WRITS", "WRONG", "WROTE", "WROTH", "WRUNG", "XENON", "YABBA", "YACKS", "YAHOO", "YANKS", "YARDS", "YARNS", "YAWNS", "YEARS", "YEAST", "YECCH", "YELLS", "YELPS", "YIELD", "YIKES", "YODEL", "YOLKS", "YONKS", "YOUNG", "YOURS", "YOUSE", "YOUTH", "YUCCA", "YUCKY", "YUMMY", "ZEBRA", "ZILCH", "ZIPPY", "ZONED", "ZONES", "ZOOMS"]
+    
     
     var isActualWord: Bool = false
     
-    var targetWord: String!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var lastGuessLabel: UILabel!
+    
+    
+    var firstGuessedLet: String!
+    var secondGuessedLet: String!
+    var thirdGuessedLet: String!
+    var fourthGuessedLet: String!
+    var fifthGuessedLet: String!
+    var otherLet: String!
+    
+    var targetWord: String = "HI"
     
     var guessedWord: String!
+    
+    var lastGuessedWord: String!
     
     
     
@@ -71,9 +84,13 @@ class MessagesViewController: MSMessagesAppViewController {
         letterLabels = [firstLetLabel, secondLetLabel, thirdLetLabel, fourthLetLabel, fifthLetLabel]
         currentLabel = firstLetLabel
         roundObjects()
-        targetWord = wordOptions.randomElement()
+        if targetWord == "HI" {
+            targetWord = wordOptions.randomElement() ?? ""
+        }
         errorLabel.text = ""
     }
+    
+    
     
     
     func roundObjects() {
@@ -169,20 +186,47 @@ class MessagesViewController: MSMessagesAppViewController {
         setLabel(letter: "M")
     }
     @IBAction func BackTap(_ sender: Any) {
+        isActualWord = false
         lastLabel()
         currentLabel.text = ""
         errorLabel.text = ""
     }
     @IBAction func GoTap(_ sender: Any) {
-        
         if (fifthLetLabel.text != "") {
-            setLabelColors()
+            
+            guessedWord = firstGuessedLet + secondGuessedLet + thirdGuessedLet + fourthGuessedLet + fifthGuessedLet
+            
+            for word in wordOptions {
+                if word == guessedWord {
+                    isActualWord = true
+                }
+            }
+            
+            if isActualWord {
+                setLabelColors()
+                let url = prepareURL()
+                prepareMessage(url)
+            } else {
+                errorLabel.text = "Word not found in word list"
+            }
         }
     }
     
     
+    
     func setLabel(letter: String) {
         currentLabel.text = letter
+        if currentLabel == firstLetLabel {
+            firstGuessedLet = letter
+        } else if currentLabel == secondLetLabel{
+            secondGuessedLet = letter
+        } else if currentLabel == thirdLetLabel{
+            thirdGuessedLet = letter
+        } else if currentLabel == fourthLetLabel{
+            fourthGuessedLet = letter
+        } else if currentLabel == fifthLetLabel{
+            fifthGuessedLet = letter
+        }
         nextLabel()
     }
     
@@ -238,22 +282,22 @@ class MessagesViewController: MSMessagesAppViewController {
         let fifthLet = getWordLetter(num: 4)
         
         if (letterLabel.text == targetLet) {
-            letterLabel.backgroundColor = UIColor.green
+            letterLabel.backgroundColor = UIColor(named: "customGreen")
             setKeyColor(keyLetter: letterLabel.text ?? "", color: 1)
         } else if (letterLabel.text == firstLet && firstLetLabel.text != firstLet) {
-            letterLabel.backgroundColor = UIColor.yellow
+            letterLabel.backgroundColor = UIColor(named: "customYellow")
             setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
         } else if (letterLabel.text == secLet && secondLetLabel.text != secLet) {
-            letterLabel.backgroundColor = UIColor.yellow
+            letterLabel.backgroundColor = UIColor(named: "customYellow")
             setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
         } else if (letterLabel.text == thirdLet && thirdLetLabel.text != thirdLet) {
-            letterLabel.backgroundColor = UIColor.yellow
+            letterLabel.backgroundColor = UIColor(named: "customYellow")
             setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
         } else if (letterLabel.text == fourLet && fourthLetLabel.text != fourLet) {
-            letterLabel.backgroundColor = UIColor.yellow
+            letterLabel.backgroundColor = UIColor(named: "customYellow")
             setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
         } else if (letterLabel.text == fifthLet && fifthLetLabel.text != fifthLet) {
-            letterLabel.backgroundColor = UIColor.yellow
+            letterLabel.backgroundColor = UIColor(named: "customYellow")
             setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
         } else {
             letterLabel.backgroundColor = UIColor.darkGray
@@ -268,9 +312,9 @@ class MessagesViewController: MSMessagesAppViewController {
          for button in keyButtons {
              if button.titleLabel?.text == keyLetter {
                  if color == 2 {
-                     button.backgroundColor = UIColor.yellow
+                     button.backgroundColor = UIColor(named: "customYellow")
                  } else if color == 1{
-                     button.backgroundColor = UIColor.green
+                     button.backgroundColor = UIColor(named: "customGreen")
                  } else {
                      button.backgroundColor = UIColor.darkGray
                  }
@@ -294,6 +338,59 @@ class MessagesViewController: MSMessagesAppViewController {
 
         return String(word[range])
     }
+    
+    
+    func prepareURL() -> URL {
+   
+           var urlComponents = URLComponents()
+           urlComponents.scheme = "https";
+           urlComponents.host = "www.ebookfrenzy.com";
+           let guessQuery = URLQueryItem(name: "lastGuess", value: guessedWord)
+           let targetQuery = URLQueryItem(name: "targetWord", value: targetWord)
+           urlComponents.queryItems = [guessQuery, targetQuery]
+           return urlComponents.url!
+   
+       }
+    
+    func prepareMessage(_ url: URL) {
+    
+            let message = MSMessage()
+    
+            let layout = MSMessageTemplateLayout()
+            layout.caption = "let's play wordle!"
+    
+            layout.image = UIImage(named: "icon")
+    
+            message.layout = layout
+            message.url = url
+    
+            let conversation = self.activeConversation
+    
+            conversation?.insert(message, completionHandler: {(error) in
+                if let error = error {
+                    print(error)
+                }
+            })
+    
+            self.dismiss()
+    
+        }
+    
+    
+    func decodeURL(_ url: URL) {
+    
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+    
+            for (index, queryItem) in (components?.queryItems?.enumerated())! {
+                if queryItem.name == "lastGuess" {
+                    lastGuessedWord = queryItem.value ?? ""
+                    lastGuessLabel.text = lastGuessedWord
+                }
+                if queryItem.name == "targetWord" {
+                    targetWord = queryItem.value ?? ""
+                }
+            }
+        }
     
     
     
@@ -362,10 +459,9 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func willBecomeActive(with conversation: MSConversation) {
         
-//        if let messageURL = conversation.selectedMessage?.url {
-//            decodeURL(messageURL)
-//            caption = "It's your move!"
-//        }
+        if let messageURL = conversation.selectedMessage?.url {
+            decodeURL(messageURL)
+        }
        
     }
     
