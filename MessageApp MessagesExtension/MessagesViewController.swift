@@ -19,6 +19,12 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var currentLabel: UILabel!
     
+    @IBOutlet weak var lastLabelOne: UILabel!
+    @IBOutlet weak var lastLabelTwo: UILabel!
+    @IBOutlet weak var lastLabelThree: UILabel!
+    @IBOutlet weak var lastLabelFour: UILabel!
+    @IBOutlet weak var lastLabelFive: UILabel!
+    
     
     
     @IBOutlet weak var QKey: UIButton!
@@ -60,7 +66,6 @@ class MessagesViewController: MSMessagesAppViewController {
     var isActualWord: Bool = false
     
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var lastGuessLabel: UILabel!
     
     
     var firstGuessedLet: String!
@@ -191,6 +196,7 @@ class MessagesViewController: MSMessagesAppViewController {
         currentLabel.text = ""
         errorLabel.text = ""
     }
+    
     @IBAction func GoTap(_ sender: Any) {
         if (fifthLetLabel.text != "") {
             
@@ -261,11 +267,11 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     func setLabelColors() {
-        let firstLet = getWordLetter(num: 0)
-        let secLet = getWordLetter(num: 1)
-        let thirdLet = getWordLetter(num: 2)
-        let fourLet = getWordLetter(num: 3)
-        let fifthLet = getWordLetter(num: 4)
+        let firstLet = getWordLetter(num: 0, word: targetWord)
+        let secLet = getWordLetter(num: 1, word: targetWord)
+        let thirdLet = getWordLetter(num: 2, word: targetWord)
+        let fourLet = getWordLetter(num: 3, word: targetWord)
+        let fifthLet = getWordLetter(num: 4, word: targetWord)
         
         setOneLabelColor(targetLet: firstLet, letterLabel: firstLetLabel)
         setOneLabelColor(targetLet: secLet, letterLabel: secondLetLabel)
@@ -275,11 +281,12 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     func setOneLabelColor(targetLet: String, letterLabel: UILabel) {
-        let firstLet = getWordLetter(num: 0)
-        let secLet = getWordLetter(num: 1)
-        let thirdLet = getWordLetter(num: 2)
-        let fourLet = getWordLetter(num: 3)
-        let fifthLet = getWordLetter(num: 4)
+        
+        let firstLet = getWordLetter(num: 0, word: targetWord)
+        let secLet = getWordLetter(num: 1, word: targetWord)
+        let thirdLet = getWordLetter(num: 2, word: targetWord)
+        let fourLet = getWordLetter(num: 3, word: targetWord)
+        let fifthLet = getWordLetter(num: 4, word: targetWord)
         
         if (letterLabel.text == targetLet) {
             letterLabel.backgroundColor = UIColor(named: "customGreen")
@@ -323,12 +330,12 @@ class MessagesViewController: MSMessagesAppViewController {
          
      }
     
-    func getWordLetter(num: Int) -> String {
-        let start = targetWord.index(targetWord.startIndex, offsetBy: num)
-        let end = targetWord.index(targetWord.startIndex, offsetBy: num)
+    func getWordLetter(num: Int, word: String) -> String {
+        let start = word.index(word.startIndex, offsetBy: num)
+        let end = word.index(word.startIndex, offsetBy: num)
         let range = start...end
 
-        return String(targetWord[range])
+        return String(word[range])
     }
     
     func checkWordLetter(num: Int, word: String) -> String {
@@ -337,6 +344,16 @@ class MessagesViewController: MSMessagesAppViewController {
         let range = start...end
 
         return String(word[range])
+    }
+    
+    func setGuessedLetLabels(guessed: String) {
+        
+        lastLabelOne.text = getWordLetter(num: 0, word: guessed)
+        lastLabelTwo.text = getWordLetter(num: 1, word: guessed)
+        lastLabelThree.text = getWordLetter(num: 2, word: guessed)
+        lastLabelFour.text = getWordLetter(num: 3, word: guessed)
+        lastLabelFive.text = getWordLetter(num: 4, word: guessed)
+        
     }
     
     
@@ -384,7 +401,7 @@ class MessagesViewController: MSMessagesAppViewController {
             for (index, queryItem) in (components?.queryItems?.enumerated())! {
                 if queryItem.name == "lastGuess" {
                     lastGuessedWord = queryItem.value ?? ""
-                    lastGuessLabel.text = lastGuessedWord
+                    setGuessedLetLabels(guessed: lastGuessedWord)
                 }
                 if queryItem.name == "targetWord" {
                     targetWord = queryItem.value ?? ""
