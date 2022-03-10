@@ -19,12 +19,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var currentLabel: UILabel!
     
-    @IBOutlet weak var lastLabelOne: UILabel!
-    @IBOutlet weak var lastLabelTwo: UILabel!
-    @IBOutlet weak var lastLabelThree: UILabel!
-    @IBOutlet weak var lastLabelFour: UILabel!
-    @IBOutlet weak var lastLabelFive: UILabel!
-    
     
     
     @IBOutlet weak var QKey: UIButton!
@@ -79,7 +73,14 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var guessedWord: String!
     
+    
+    
+    @IBOutlet weak var allGuessesLabel: UILabel!
+    
     var lastGuessedWord: String!
+    
+    var allGuessedWords: String!
+    
     
     
     
@@ -93,6 +94,7 @@ class MessagesViewController: MSMessagesAppViewController {
             targetWord = wordOptions.randomElement() ?? ""
         }
         errorLabel.text = ""
+        allGuessesLabel.text = "Last guess: "
     }
     
     
@@ -201,6 +203,7 @@ class MessagesViewController: MSMessagesAppViewController {
         if (fifthLetLabel.text != "") {
             
             guessedWord = firstGuessedLet + secondGuessedLet + thirdGuessedLet + fourthGuessedLet + fifthGuessedLet
+            allGuessedWords = (allGuessedWords ?? "Last guesses: ") + "\n\n" + (guessedWord ?? "")
             
             for word in wordOptions {
                 if word == guessedWord {
@@ -211,10 +214,12 @@ class MessagesViewController: MSMessagesAppViewController {
             if isActualWord {
                 setLabelColors()
                 let url = prepareURL()
+                
                 prepareMessage(url)
             } else {
                 errorLabel.text = "Word not found in word list"
             }
+            
         }
     }
     
@@ -345,16 +350,7 @@ class MessagesViewController: MSMessagesAppViewController {
 
         return String(word[range])
     }
-    
-    func setGuessedLetLabels(guessed: String) {
-        
-        lastLabelOne.text = getWordLetter(num: 0, word: guessed)
-        lastLabelTwo.text = getWordLetter(num: 1, word: guessed)
-        lastLabelThree.text = getWordLetter(num: 2, word: guessed)
-        lastLabelFour.text = getWordLetter(num: 3, word: guessed)
-        lastLabelFive.text = getWordLetter(num: 4, word: guessed)
-        
-    }
+   
     
     
     func prepareURL() -> URL {
@@ -364,7 +360,8 @@ class MessagesViewController: MSMessagesAppViewController {
            urlComponents.host = "www.ebookfrenzy.com";
            let guessQuery = URLQueryItem(name: "lastGuess", value: guessedWord)
            let targetQuery = URLQueryItem(name: "targetWord", value: targetWord)
-           urlComponents.queryItems = [guessQuery, targetQuery]
+           let allWordsQuery = URLQueryItem(name: "allWords", value: allGuessedWords)
+           urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery]
            return urlComponents.url!
    
        }
@@ -401,12 +398,19 @@ class MessagesViewController: MSMessagesAppViewController {
             for (index, queryItem) in (components?.queryItems?.enumerated())! {
                 if queryItem.name == "lastGuess" {
                     lastGuessedWord = queryItem.value ?? ""
-                    setGuessedLetLabels(guessed: lastGuessedWord)
+                   // allGuessesLabel.text = (allGuessesLabel.text ?? "Last guesses: ") + "\n" + lastGuessedWord
                 }
                 if queryItem.name == "targetWord" {
                     targetWord = queryItem.value ?? ""
                 }
+                if queryItem.name == "allWords" {
+                    allGuessedWords = queryItem.value ?? "hello"
+                }
+                
             }
+        allGuessesLabel.text = allGuessedWords
+       // allGuessesLabel.text = (allGuessesLabel.text ?? "Last guesses: ") + "\n" + lastGuessedWord
+            
         }
     
     
