@@ -61,6 +61,7 @@ class MessagesViewController: MSMessagesAppViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
+    @IBOutlet weak var stagnantLabel: UILabel!
     
     var firstGuessedLet: String!
     var secondGuessedLet: String!
@@ -81,11 +82,13 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var allGuessedWords: String!
     
+    var myString:String!
+    var myMutableString = NSMutableAttributedString()
+    
     
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         keyButtons = [AKey, BKey, CKey, DKey, EKey, FKey, GKey, HKey, IKey, JKey, KKey, LKey, MKey, NKey, OKey, PKey, QKey, RKey, SKey, TKey, UKey, VKey, WKey, XKey, YKey, ZKey]
         letterLabels = [firstLetLabel, secondLetLabel, thirdLetLabel, fourthLetLabel, fifthLetLabel]
         currentLabel = firstLetLabel
@@ -94,7 +97,12 @@ class MessagesViewController: MSMessagesAppViewController {
             targetWord = wordOptions.randomElement() ?? ""
         }
         errorLabel.text = ""
-        allGuessesLabel.text = "Last guess: "
+        
+        stagnantLabel.text = "\n Last guesses: \n"
+    
+        allGuessesLabel.text = ""
+        
+        super.viewDidLoad()
     }
     
     
@@ -203,7 +211,9 @@ class MessagesViewController: MSMessagesAppViewController {
         if (fifthLetLabel.text != "") {
             
             guessedWord = firstGuessedLet + secondGuessedLet + thirdGuessedLet + fourthGuessedLet + fifthGuessedLet
-            allGuessedWords = (allGuessedWords ?? "Last guesses: ") + "\n\n" + (guessedWord ?? "")
+            
+            
+            allGuessedWords = (allGuessedWords ?? "") + "\n\n" + (guessedWord ?? "")
             
             for word in wordOptions {
                 if word == guessedWord {
@@ -350,6 +360,17 @@ class MessagesViewController: MSMessagesAppViewController {
 
         return String(word[range])
     }
+    
+    func getAttributedString(string: String) -> String {
+        
+        let attributedString = NSMutableAttributedString(string: string)
+        attributedString.addAttribute(.backgroundColor, value: UIColor.red, range: NSRange(location: 0, length: 1))
+        attributedString.addAttribute(.backgroundColor, value: UIColor.green, range: NSRange(location: 1, length: 1))
+        attributedString.addAttribute(.backgroundColor, value: UIColor.gray, range: NSRange(location: 2, length: 1))
+        
+        return attributedString.string
+        
+    }
    
     
     
@@ -408,10 +429,69 @@ class MessagesViewController: MSMessagesAppViewController {
                 }
                 
             }
-        allGuessesLabel.text = allGuessedWords
-       // allGuessesLabel.text = (allGuessesLabel.text ?? "Last guesses: ") + "\n" + lastGuessedWord
+        
+        setOneGuessLabel()
+        
+       // allGuessesLabel.text = allGuessedWords
             
         }
+    
+    func setGuessesLabel() {
+        
+        myMutableString = NSMutableAttributedString(string: lastGuessedWord)
+        if (getWordLetter(num: 0, word: lastGuessedWord) == getWordLetter(num: 0, word: targetWord)){
+        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: 0, length: 1))
+        }
+        if (getWordLetter(num: 1, word: lastGuessedWord) == getWordLetter(num: 1, word: targetWord)){
+        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: 1, length: 1))
+        }
+        if (getWordLetter(num: 2, word: lastGuessedWord) == getWordLetter(num: 2, word: targetWord)){
+        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: 2, length: 1))
+        }
+        if (getWordLetter(num: 3, word: lastGuessedWord) == getWordLetter(num: 3, word: targetWord)){
+        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: 3, length: 1))
+        }
+        if (getWordLetter(num: 4, word: lastGuessedWord) == getWordLetter(num: 4, word: targetWord)){
+        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: 4, length: 1))
+        }
+        allGuessesLabel.attributedText = myMutableString
+        
+    }
+    
+    func setOneGuessLabel() {
+        
+        myMutableString = NSMutableAttributedString(string: lastGuessedWord)
+        var i:Int = 0
+        
+        while i < 5 {
+            
+        if (getWordLetter(num: i, word: lastGuessedWord) == getWordLetter(num: i, word: targetWord)){
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: i, length: 1))
+        }
+        else if (getWordLetter(num: i, word: lastGuessedWord) == getWordLetter(num: 0, word: targetWord)){
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: i, length: 1))
+        }
+        else if (getWordLetter(num: i, word: lastGuessedWord) == getWordLetter(num: 1, word: targetWord)){
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: i, length: 1))
+        }
+        else if (getWordLetter(num: i, word: lastGuessedWord) == getWordLetter(num: 2, word: targetWord)){
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: i, length: 1))
+        }
+        else if (getWordLetter(num: i, word: lastGuessedWord) == getWordLetter(num: 3, word: targetWord)){
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: i, length: 1))
+        } else if (getWordLetter(num: i, word: lastGuessedWord) == getWordLetter(num: 4, word: targetWord)){
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: i, length: 1))
+        } else {
+            myMutableString.addAttribute(.backgroundColor, value: UIColor.darkGray, range: NSRange(location: i, length: 1))
+        }
+         
+        i = i+1
+            
+        }
+        
+        allGuessesLabel.attributedText = myMutableString
+        
+    }
     
     
     
