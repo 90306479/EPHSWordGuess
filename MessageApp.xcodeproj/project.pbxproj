@@ -13,7 +13,6 @@
 		5E7537CB27C93D0300088597 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7537CA27C93D0300088597 /* MessagesViewController.swift */; };
 		5E7537CE27C93D0300088597 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537CC27C93D0300088597 /* MainInterface.storyboard */; };
 		5E7537D027C93D0500088597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537CF27C93D0500088597 /* Assets.xcassets */; };
-		5E7537DC27C9491C00088597 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537DB27C9491C00088597 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +48,6 @@
 		5E7537CD27C93D0300088597 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		5E7537CF27C93D0500088597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E7537D127C93D0500088597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5E7537DB27C9491C00088597 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +103,6 @@
 				5E7537CA27C93D0300088597 /* MessagesViewController.swift */,
 				5E7537CC27C93D0300088597 /* MainInterface.storyboard */,
 				5E7537CF27C93D0500088597 /* Assets.xcassets */,
-				5E7537DB27C9491C00088597 /* icon.png */,
 				5E7537D127C93D0500088597 /* Info.plist */,
 			);
 			path = "MessageApp MessagesExtension";
@@ -200,7 +197,6 @@
 			files = (
 				5E7537D027C93D0500088597 /* Assets.xcassets in Resources */,
 				5E7537CE27C93D0300088597 /* MainInterface.storyboard in Resources */,
-				5E7537DC27C9491C00088597 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +364,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.haleyParker.MessageApp.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ephs2022.wordle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -394,7 +390,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.haleyParker.MessageApp.MessagesExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = ephs2022.wordle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -416,7 +412,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.haleyParker.MessageApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ephs2022.wordle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -437,7 +433,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.haleyParker.MessageApp;
+				PRODUCT_BUNDLE_IDENTIFIER = ephs2022.wordle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
