@@ -401,7 +401,7 @@ class MessagesViewController: MSMessagesAppViewController {
             let layout = MSMessageTemplateLayout()
             layout.caption = "let's play wordle!"
     
-            layout.image = UIImage(named: "iMessage App Icon")
+            layout.image = UIImage(named: "icon")
     
             message.layout = layout
             message.url = url
