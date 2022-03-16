@@ -61,7 +61,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var stagnantLabel: UILabel!
     
     var firstGuessedLet: String!
     var secondGuessedLet: String!
@@ -98,7 +97,6 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         errorLabel.text = ""
         
-        stagnantLabel.text = "\n Last guesses: \n"
     
         allGuessesLabel.text = ""
         
@@ -212,7 +210,6 @@ class MessagesViewController: MSMessagesAppViewController {
             
             guessedWord = firstGuessedLet + secondGuessedLet + thirdGuessedLet + fourthGuessedLet + fifthGuessedLet
             
-            allGuessedWords = (allGuessedWords ?? "") + "\n\n" + (guessedWord ?? "")
             
             for word in wordOptions {
                 if word == guessedWord {
@@ -221,6 +218,7 @@ class MessagesViewController: MSMessagesAppViewController {
             }
             
             if isActualWord {
+                allGuessedWords = (allGuessedWords ?? "") + "\n\n" + (guessedWord ?? "")
                 setLabelColors()
                 let url = prepareURL()
                 
