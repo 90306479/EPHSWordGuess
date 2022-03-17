@@ -73,6 +73,8 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var guessedWord: String!
     
+    var numOfGuesses: Int = 0
+    
     
     
     @IBOutlet weak var allGuessesLabel: UILabel!
@@ -218,7 +220,6 @@ class MessagesViewController: MSMessagesAppViewController {
             }
             
             if isActualWord {
-                allGuessedWords = (allGuessedWords ?? "") + "\n\n" + (guessedWord ?? "")
                 setLabelColors()
                 let url = prepareURL()
                 
@@ -380,6 +381,9 @@ class MessagesViewController: MSMessagesAppViewController {
     
     
     func prepareURL() -> URL {
+        
+            allGuessedWords = (allGuessedWords ?? "") + "\n" + (guessedWord ?? "")
+            numOfGuesses+=1
    
            var urlComponents = URLComponents()
            urlComponents.scheme = "https";
@@ -387,7 +391,8 @@ class MessagesViewController: MSMessagesAppViewController {
            let guessQuery = URLQueryItem(name: "lastGuess", value: guessedWord)
            let targetQuery = URLQueryItem(name: "targetWord", value: targetWord)
            let allWordsQuery = URLQueryItem(name: "allWords", value: allGuessedWords)
-           urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery]
+           let guessNumQuery = URLQueryItem(name: "guessNum", value: String(numOfGuesses))
+           urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery, guessNumQuery]
            return urlComponents.url!
    
        }
@@ -432,13 +437,16 @@ class MessagesViewController: MSMessagesAppViewController {
                 if queryItem.name == "allWords" {
                     allGuessedWords = queryItem.value ?? "hello"
                 }
+                if queryItem.name == "guessNum" {
+                    numOfGuesses = Int(queryItem.value ?? "2") ?? 1
+                }
 
 
             }
 
-        setOneGuessLabel()
+        //setOneGuessLabel()
         
-        //allGuessesLabel.text = allGuessedWords
+        allGuessesLabel.text = allGuessedWords
 
         }
     

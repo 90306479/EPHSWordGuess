@@ -82,10 +82,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gwl-Dv-9gx">
-                                <rect key="frame" x="9" y="362" width="305" height="106"/>
+                                <rect key="frame" x="8" y="362" width="304" height="106"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="jbe-VT-EYh">
-                                        <rect key="frame" x="0.5" y="0.0" width="304" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVj-7E-CpK">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="30"/>
@@ -273,7 +273,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="UCJ-Qm-6Nx">
-                                        <rect key="frame" x="16" y="38" width="273" height="30"/>
+                                        <rect key="frame" x="15.5" y="38" width="273" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGd-x0-Rho">
                                                 <rect key="frame" x="0.0" y="0.0" width="25" height="30"/>
@@ -443,7 +443,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ap5-xR-g0t">
-                                        <rect key="frame" x="6" y="76" width="293" height="30"/>
+                                        <rect key="frame" x="5.5" y="76" width="293" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Am7-f2-CdE">
                                                 <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
@@ -611,6 +611,10 @@
                                     </stackView>
                                 </subviews>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="304" id="GLU-AR-qAy"/>
+                                    <constraint firstAttribute="height" constant="106" id="keg-W9-PaS"/>
+                                </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-2g-S6f">
                                 <rect key="frame" x="160" y="488" width="2.5" height="31"/>
@@ -634,32 +638,38 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess List" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ss-W1-QPC">
-                                <rect key="frame" x="47" y="88" width="227" height="37.5"/>
+                                <rect key="frame" x="78.5" y="74" width="163.5" height="188"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="186" id="uZ9-0g-HnB"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="iOh-Vc-BNv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="bBV-2g-S6f" secondAttribute="bottom" constant="9" id="7Cp-G4-pH2"/>
-                            <constraint firstItem="gwl-Dv-9gx" firstAttribute="centerX" secondItem="8Ss-W1-QPC" secondAttribute="centerX" constant="1" id="Nlm-vh-Vnw"/>
+                            <constraint firstItem="FAw-nf-ZGE" firstAttribute="centerY" secondItem="zMn-AG-sqS" secondAttribute="centerY" id="8Cz-iP-t1v"/>
+                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="top" secondItem="iOh-Vc-BNv" secondAttribute="top" constant="30" id="A9z-Pc-oS6"/>
+                            <constraint firstItem="rQw-by-Q0p" firstAttribute="top" secondItem="8Ss-W1-QPC" secondAttribute="bottom" constant="20" id="Qjh-bJ-hce"/>
                             <constraint firstItem="rQw-by-Q0p" firstAttribute="centerX" secondItem="FAw-nf-ZGE" secondAttribute="centerX" id="SQS-hA-dk0"/>
                             <constraint firstItem="rQw-by-Q0p" firstAttribute="top" secondItem="FAw-nf-ZGE" secondAttribute="bottom" constant="12" id="SYK-Q6-D41"/>
                             <constraint firstItem="NgJ-z9-1dn" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="36" id="TX2-Em-OAz"/>
+                            <constraint firstItem="rQw-by-Q0p" firstAttribute="top" secondItem="FAw-nf-ZGE" secondAttribute="bottom" constant="12" id="VcH-M4-Kj9"/>
+                            <constraint firstItem="gwl-Dv-9gx" firstAttribute="top" secondItem="rQw-by-Q0p" secondAttribute="bottom" constant="30" id="Vtt-YP-zon"/>
+                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="VuF-Xb-Q9Q"/>
+                            <constraint firstItem="iOh-Vc-BNv" firstAttribute="bottom" secondItem="gwl-Dv-9gx" secondAttribute="bottom" constant="60" id="Yho-bX-7Tn"/>
                             <constraint firstItem="NgJ-z9-1dn" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="topMargin" constant="30" id="cZO-cQ-XW6"/>
                             <constraint firstItem="bBV-2g-S6f" firstAttribute="top" secondItem="gwl-Dv-9gx" secondAttribute="bottom" constant="20" id="ec8-Yp-r8q"/>
                             <constraint firstItem="NgJ-z9-1dn" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="hE2-Ym-hPJ"/>
                             <constraint firstItem="bBV-2g-S6f" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="160" id="k5L-G5-ENP"/>
-                            <constraint firstItem="gwl-Dv-9gx" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="-7" id="kej-ST-i7T"/>
+                            <constraint firstItem="gwl-Dv-9gx" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="kb9-wm-cW2"/>
                             <constraint firstItem="gwl-Dv-9gx" firstAttribute="top" secondItem="rQw-by-Q0p" secondAttribute="bottom" constant="30" id="l1K-h0-8vc"/>
                             <constraint firstAttribute="bottom" secondItem="gwl-Dv-9gx" secondAttribute="bottom" constant="60" id="mwu-74-QNt"/>
-                            <constraint firstAttribute="trailing" secondItem="8Ss-W1-QPC" secondAttribute="trailing" constant="46" id="owg-3z-y28"/>
                             <constraint firstItem="rQw-by-Q0p" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="qi0-Tk-ywB"/>
                             <constraint firstItem="FAw-nf-ZGE" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" constant="63" id="sGm-aT-Fuk"/>
-                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="47" id="sVq-di-p4B"/>
-                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="top" secondItem="NgJ-z9-1dn" secondAttribute="bottom" constant="1" id="xaC-wG-TGa"/>
-                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="47" id="yVg-ua-yIL"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
