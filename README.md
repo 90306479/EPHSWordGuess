@@ -1,4 +1,4 @@
-# MessagingApp
+# EPHS Word Game
 
 EPHS Word Game is an app that resembles the popular New York Times word game "Wordle" where players guess a set 5 letter word and get feedback after making there guess, i.e. what letters are in the correct spot or which ones are not in the word at all. To set our app apart from Wordle and others like it, we decided to add in a multiplayer element and design it to be played by 2 people over the iMessage platform. When brainstorming ideas for what project to focus on during the second half of advanced iOS semester one, we decided we wanted to create a game rather than an app. Connecting the game to wordle was an obvious choice considering its popularity, but to make our game different we decided we wanted to add a multiplayer element to the game. 
 
