@@ -5,7 +5,7 @@ EPHS Word Game is an app that resembles the popular New York Times word game "Wo
 
 The first thing I worked on when creating our EPHS Word Game was learning the frameworks for coding a program over the iMessage platform. XCode has a built-in guideline for iMessage apps, but it is still relatively new so figuring out its functionality was challenging. Once I learned how the interface for an iMessage game would work, I focused on learning how to send new data from one player to another, which is done my creating then subsequentially decoding a URL with the information that needs to be passed over. 
 
-![imessaging](messageLearning.png)  ![url](urlLearning.png)
+![imessaging](messageLearning.png)  ![url](urlPt2.png)
 
 After learning the basic layout for designing an iMessage game, I started creating the user interface for our EPHS Word Game using storyboards. The interface went through a lot of trial and error. Initially, I used textboxes as the placeholders for each letter in the word, and learned how to automatically send the user to the following textbox when one was full. 
 
