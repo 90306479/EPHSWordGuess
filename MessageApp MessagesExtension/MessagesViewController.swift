@@ -75,6 +75,8 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var numOfGuesses: Int = 0
     
+    var didWin: String = "n"
+    
     
     
     @IBOutlet weak var allGuessesLabel: UILabel!
@@ -123,82 +125,134 @@ class MessagesViewController: MSMessagesAppViewController {
     
     
     @IBAction func QTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "Q")
+        }
     }
     @IBAction func WTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "W")
+        }
     }
     @IBAction func ETap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "E")
+        }
     }
     @IBAction func RTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "R")
+        }
     }
     @IBAction func TTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "T")
+        }
     }
     @IBAction func YTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "Y")
+        }
     }
     @IBAction func UTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "U")
+        }
     }
     @IBAction func ITap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "I")
+        }
     }
     @IBAction func OTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "O")
+        }
     }
     @IBAction func PTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "P")
+        }
     }
     @IBAction func ATap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "A")
+        }
     }
     @IBAction func STap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "S")
+        }
     }
     @IBAction func DTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "D")
+        }
     }
     @IBAction func FTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "F")
+        }
     }
     @IBAction func GTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "G")
+        }
     }
     @IBAction func HTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "H")
+        }
     }
     @IBAction func JTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "K")
+        }
     }
     @IBAction func KTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "K")
+        }
     }
     @IBAction func LTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "L")
+        }
     }
     @IBAction func ZTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "Z")
+        }
     }
     @IBAction func XTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "X")
+        }
     }
     @IBAction func CTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "C")
+        }
     }
     @IBAction func VTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "V")
+        }
     }
     @IBAction func BTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "B")
+        }
     }
     @IBAction func NTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "N")
+        }
     }
     @IBAction func MTap(_ sender: Any) {
+        if (didWin == "n") {
         setLabel(letter: "M")
+        }
     }
     @IBAction func BackTap(_ sender: Any) {
         isActualWord = false
@@ -208,7 +262,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     
     @IBAction func GoTap(_ sender: Any) {
-        if (fifthLetLabel.text != "") {
+        if (fifthLetLabel.text != "" && didWin == "n") {
             
             guessedWord = firstGuessedLet + secondGuessedLet + thirdGuessedLet + fourthGuessedLet + fifthGuessedLet
             
@@ -222,8 +276,13 @@ class MessagesViewController: MSMessagesAppViewController {
             if isActualWord {
                 
                 setLabelColors()
+                if guessedWord == targetWord {
+                    allGuessesLabel.text = "you win! \n the target word was: \n" + targetWord
+                    allGuessesLabel.textColor = UIColor.black
+                    didWin = "y"
+                }
                 let url = prepareURL()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.9){
                     self.prepareMessage(url)
                 }
                 
@@ -395,7 +454,8 @@ class MessagesViewController: MSMessagesAppViewController {
            let targetQuery = URLQueryItem(name: "targetWord", value: targetWord)
            let allWordsQuery = URLQueryItem(name: "allWords", value: allGuessedWords)
            let guessNumQuery = URLQueryItem(name: "guessNum", value: String(numOfGuesses))
-           urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery, guessNumQuery]
+           let didWinQuery = URLQueryItem(name: "didWin", value: didWin)
+           urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery, guessNumQuery, didWinQuery]
            return urlComponents.url!
    
        }
@@ -443,12 +503,23 @@ class MessagesViewController: MSMessagesAppViewController {
                 if queryItem.name == "guessNum" {
                     numOfGuesses = Int(queryItem.value ?? "2") ?? 1
                 }
+                if queryItem.name == "didWin" {
+                    didWin = queryItem.value ?? "n"
+                }
 
 
             }
+        
+        if (didWin == "y") {
+            
+            allGuessesLabel.text = "you lose! \n the target word was: \n" + targetWord
+            allGuessesLabel.textColor = UIColor.black
+            
+        } else {
 
         setGuessLabels()
         
+        }
         //allGuessesLabel.text = String(numOfGuesses)
 
         }
