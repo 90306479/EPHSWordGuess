@@ -8,6 +8,15 @@
 import UIKit
 import Messages
 
+class ViewController: UIViewController {
+    
+    
+    @IBAction func leavePopUp(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+}
+
 class MessagesViewController: MSMessagesAppViewController {
     
     @IBOutlet weak var firstLetLabel: UILabel!

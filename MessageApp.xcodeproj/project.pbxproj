@@ -13,7 +13,7 @@
 		5E7537CB27C93D0300088597 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7537CA27C93D0300088597 /* MessagesViewController.swift */; };
 		5E7537CE27C93D0300088597 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537CC27C93D0300088597 /* MainInterface.storyboard */; };
 		5E7537D027C93D0500088597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537CF27C93D0500088597 /* Assets.xcassets */; };
-		5ECC5E0C2808809B0005E6E4 /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECC5E0B2808809B0005E6E4 /* popUpViewController.swift */; };
+		5ECC5E12280883E80005E6E4 /* popUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECC5E11280883E80005E6E4 /* popUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +49,7 @@
 		5E7537CD27C93D0300088597 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		5E7537CF27C93D0500088597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E7537D127C93D0500088597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5ECC5E0B2808809B0005E6E4 /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
+		5ECC5E11280883E80005E6E4 /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
 		5EED280427F756A0001624A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +106,7 @@
 			children = (
 				5E7537CA27C93D0300088597 /* MessagesViewController.swift */,
 				5E7537CC27C93D0300088597 /* MainInterface.storyboard */,
-				5ECC5E0B2808809B0005E6E4 /* popUpViewController.swift */,
+				5ECC5E11280883E80005E6E4 /* popUpViewController.swift */,
 				5E7537CF27C93D0500088597 /* Assets.xcassets */,
 				5E7537D127C93D0500088597 /* Info.plist */,
 			);
@@ -213,7 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E7537CB27C93D0300088597 /* MessagesViewController.swift in Sources */,
-				5ECC5E0C2808809B0005E6E4 /* popUpViewController.swift in Sources */,
+				5ECC5E12280883E80005E6E4 /* popUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
