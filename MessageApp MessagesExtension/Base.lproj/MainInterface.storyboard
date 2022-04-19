@@ -632,12 +632,6 @@
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guess List" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ss-W1-QPC">
-                                <rect key="frame" x="82" y="76" width="156" height="188"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ErrorLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAw-nf-ZGE">
                                 <rect key="frame" x="136" y="342" width="48" height="10"/>
                                 <constraints>
@@ -675,19 +669,27 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Guesses" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="esl-Gh-Nwe">
+                                <rect key="frame" x="40" y="127" width="240" height="130"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="systemGray6Color"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iOh-Vc-BNv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="3NJ-RG-i2p"/>
-                            <constraint firstItem="8Ss-W1-QPC" firstAttribute="top" secondItem="iOh-Vc-BNv" secondAttribute="top" constant="32" id="4Pf-Vg-sxS"/>
-                            <constraint firstItem="rQw-by-Q0p" firstAttribute="top" secondItem="8Ss-W1-QPC" secondAttribute="bottom" constant="8" symbolic="YES" id="BET-Yd-x1R"/>
+                            <constraint firstItem="rQw-by-Q0p" firstAttribute="top" secondItem="esl-Gh-Nwe" secondAttribute="bottom" constant="15" id="666-U6-JkY"/>
+                            <constraint firstItem="esl-Gh-Nwe" firstAttribute="centerX" secondItem="rQw-by-Q0p" secondAttribute="centerX" id="A7y-8d-GB8"/>
                             <constraint firstItem="sid-Bb-ysE" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" constant="6" id="EAx-K1-14b"/>
                             <constraint firstItem="FAw-nf-ZGE" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="EMe-55-YEe"/>
+                            <constraint firstItem="esl-Gh-Nwe" firstAttribute="top" secondItem="sid-Bb-ysE" secondAttribute="bottom" constant="50" id="GV6-uX-ikx"/>
                             <constraint firstItem="gwl-Dv-9gx" firstAttribute="centerX" secondItem="FAw-nf-ZGE" secondAttribute="centerX" id="JWe-ZR-ek0"/>
                             <constraint firstAttribute="trailing" secondItem="bBV-2g-S6f" secondAttribute="trailing" id="Jm3-It-6fq"/>
                             <constraint firstItem="bBV-2g-S6f" firstAttribute="top" secondItem="iOh-Vc-BNv" secondAttribute="top" constant="247" id="MTo-Fj-wV2"/>
                             <constraint firstItem="FAw-nf-ZGE" firstAttribute="top" secondItem="rQw-by-Q0p" secondAttribute="bottom" constant="20" id="UFg-ex-9Ke"/>
+                            <constraint firstItem="esl-Gh-Nwe" firstAttribute="leading" secondItem="iOh-Vc-BNv" secondAttribute="leading" constant="40" id="VNU-bi-qI9"/>
                             <constraint firstItem="gwl-Dv-9gx" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="dQz-gS-gbX"/>
                             <constraint firstItem="gwl-Dv-9gx" firstAttribute="top" secondItem="FAw-nf-ZGE" secondAttribute="bottom" constant="20" id="e6v-e9-BZE"/>
                             <constraint firstItem="bBV-2g-S6f" firstAttribute="centerY" secondItem="rQw-by-Q0p" secondAttribute="centerY" id="k0R-Ij-JhG"/>
@@ -729,7 +731,7 @@
                         <outlet property="XKey" destination="tcS-Wt-ZCr" id="QJ7-co-9kj"/>
                         <outlet property="YKey" destination="dfy-Kb-28P" id="pkz-wh-oLB"/>
                         <outlet property="ZKey" destination="QX5-mo-ORP" id="WFA-Sr-sgk"/>
-                        <outlet property="allGuessesLabel" destination="8Ss-W1-QPC" id="aaK-ut-9zY"/>
+                        <outlet property="allGuessesText" destination="esl-Gh-Nwe" id="VSY-TL-CAv"/>
                         <outlet property="errorLabel" destination="FAw-nf-ZGE" id="3P4-tb-a61"/>
                         <outlet property="fifthLetLabel" destination="wEy-St-1ia" id="TRh-ZY-EqC"/>
                         <outlet property="firstLetLabel" destination="JsZ-Rp-RYT" id="Goz-CZ-B4O"/>
@@ -1164,6 +1166,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
