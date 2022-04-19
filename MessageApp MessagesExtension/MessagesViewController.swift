@@ -82,6 +82,12 @@ class MessagesViewController: MSMessagesAppViewController {
     var otherLet: String!
     
     var targetWord: String = "HI"
+    var firstTargetLet: String!
+    var secondTargetLet: String!
+    var thirdTargetLet: String!
+    var fourthTargetLet: String!
+    var fifthTargetLet: String!
+    var allTargetLets:[String]!
     
     var guessedWord: String!
     var guessedWordWSpace: String!
@@ -110,10 +116,12 @@ class MessagesViewController: MSMessagesAppViewController {
         currentLabel = firstLetLabel
         roundObjects()
         if targetWord == "HI" {
-            targetWord = wordOptions.randomElement() ?? ""
+            //targetWord = wordOptions.randomElement() ?? ""
+            targetWord = "NOTCH"
         }
-        errorLabel.text = ""
-    
+        //errorLabel.text = ""
+        errorLabel.text = targetWord
+        
         allGuessesLabel.text = ""
         
         super.viewDidLoad()
@@ -379,53 +387,136 @@ class MessagesViewController: MSMessagesAppViewController {
         }
     }
     
+//    func setLabelColors() {
+//
+//        firstTargetLet = getWordLetter(num: 0, word: targetWord)
+//        secondTargetLet = getWordLetter(num: 1, word: targetWord)
+//        thirdTargetLet = getWordLetter(num: 2, word: targetWord)
+//        fourthTargetLet = getWordLetter(num: 3, word: targetWord)
+//        fifthTargetLet = getWordLetter(num: 4, word: targetWord)
+//        allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
+//
+//        var i:Int = 0
+//
+//        if (firstLetLabel.text == allTargetLets[i]) {
+//            firstLetLabel.backgroundColor = UIColor(named: "customGreen")
+//            setKeyColor(keyLetter: firstLetLabel.text ?? "", color: 1)
+//            allTargetLets.remove(at: i)
+//            i = i-1
+//        }
+//        if (secondLetLabel.text == allTargetLets[i+1]) {
+//            secondLetLabel.backgroundColor = UIColor(named: "customGreen")
+//            setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 1)
+//            allTargetLets.remove(at: i+1)
+//            i = i-1
+//        }
+//        if (thirdLetLabel.text == allTargetLets[i+2]) {
+//            thirdLetLabel.backgroundColor = UIColor(named: "customGreen")
+//            setKeyColor(keyLetter: thirdLetLabel.text ?? "", color: 1)
+//            allTargetLets.remove(at: i+2)
+//            i = i-1
+//        }
+//        if (fourthLetLabel.text == allTargetLets[i+3]) {
+//            fourthLetLabel.backgroundColor = UIColor(named: "customGreen")
+//            setKeyColor(keyLetter: fourthLetLabel.text ?? "", color: 1)
+//            allTargetLets.remove(at: i+3)
+//            i = i-1
+//        }
+//        if (fifthLetLabel.text == allTargetLets[i+4]) {
+//            fifthLetLabel.backgroundColor = UIColor(named: "customGreen")
+//            setKeyColor(keyLetter: fifthLetLabel.text ?? "", color: 1)
+//            allTargetLets.remove(at: i+4)
+//            i = i-1
+//        }
+//
+//
+//        var m:Int = 0
+//        var n:Int = allTargetLets.count
+//
+//        while (m<=n){
+//            if (firstLetLabel.text == allTargetLets[m] && firstLetLabel.text != firstTargetLet){
+//                firstLetLabel.backgroundColor = UIColor(named: "customYellow")
+//                setKeyColor(keyLetter: firstLetLabel.text ?? "", color: 2)
+//                allTargetLets.remove(at: m)
+//                n = n-1
+//                m = m-1
+//            } else if (secondLetLabel.text == allTargetLets[m] && secondLetLabel.text != secondTargetLet){
+//                secondLetLabel.backgroundColor = UIColor(named: "customYellow")
+//                setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 2)
+//                allTargetLets.remove(at: m)
+//                n = n-1
+//                m = m-1
+//            } else if (thirdLetLabel.text == allTargetLets[m] && thirdLetLabel.text != thirdTargetLet){
+//                thirdLetLabel.backgroundColor = UIColor(named: "customYellow")
+//                setKeyColor(keyLetter: thirdLetLabel.text ?? "", color: 2)
+//                allTargetLets.remove(at: m)
+//                n = n-1
+//                m = m-1
+//            } else if (fourthLetLabel.text == allTargetLets[m] && fourthLetLabel.text != fourthTargetLet){
+//                fourthLetLabel.backgroundColor = UIColor(named: "customYellow")
+//                setKeyColor(keyLetter: fourthLetLabel.text ?? "", color: 2)
+//                allTargetLets.remove(at: m)
+//                n = n-1
+//                m = m-1
+//            } else if (fifthLetLabel.text == allTargetLets[m]  && fifthLetLabel.text != fifthTargetLet){
+//                secondLetLabel.backgroundColor = UIColor(named: "customYellow")
+//                setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 2)
+//                allTargetLets.remove(at: m)
+//                n = n-1
+//                m = m-1
+//            }
+//            m = m+1
+//        }
+        
+        
+        
+        
+        
+        
     func setLabelColors() {
-        let firstLet = getWordLetter(num: 0, word: targetWord)
-        let secLet = getWordLetter(num: 1, word: targetWord)
-        let thirdLet = getWordLetter(num: 2, word: targetWord)
-        let fourLet = getWordLetter(num: 3, word: targetWord)
-        let fifthLet = getWordLetter(num: 4, word: targetWord)
         
-        setOneLabelColor(targetLet: firstLet, letterLabel: firstLetLabel)
-        setOneLabelColor(targetLet: secLet, letterLabel: secondLetLabel)
-        setOneLabelColor(targetLet: thirdLet, letterLabel: thirdLetLabel)
-        setOneLabelColor(targetLet: fourLet, letterLabel: fourthLetLabel)
-        setOneLabelColor(targetLet: fifthLet, letterLabel: fifthLetLabel)
-    }
-    
-    func setOneLabelColor(targetLet: String, letterLabel: UILabel) {
+            firstTargetLet = getWordLetter(num: 0, word: targetWord)
+            secondTargetLet = getWordLetter(num: 1, word: targetWord)
+            thirdTargetLet = getWordLetter(num: 2, word: targetWord)
+            fourthTargetLet = getWordLetter(num: 3, word: targetWord)
+            fifthTargetLet = getWordLetter(num: 4, word: targetWord)
+            allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
+            
         
-        let firstLet = getWordLetter(num: 0, word: targetWord)
-        let secLet = getWordLetter(num: 1, word: targetWord)
-        let thirdLet = getWordLetter(num: 2, word: targetWord)
-        let fourLet = getWordLetter(num: 3, word: targetWord)
-        let fifthLet = getWordLetter(num: 4, word: targetWord)
-        
-        if (letterLabel.text == targetLet) {
-            letterLabel.backgroundColor = UIColor(named: "customGreen")
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 1)
-        } else if (letterLabel.text == firstLet && firstLetLabel.text != firstLet) {
-            letterLabel.backgroundColor = UIColor(named: "customYellow")
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
-        } else if (letterLabel.text == secLet && secondLetLabel.text != secLet) {
-            letterLabel.backgroundColor = UIColor(named: "customYellow")
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
-        } else if (letterLabel.text == thirdLet && thirdLetLabel.text != thirdLet) {
-            letterLabel.backgroundColor = UIColor(named: "customYellow")
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
-        } else if (letterLabel.text == fourLet && fourthLetLabel.text != fourLet) {
-            letterLabel.backgroundColor = UIColor(named: "customYellow")
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
-        } else if (letterLabel.text == fifthLet && fifthLetLabel.text != fifthLet) {
-            letterLabel.backgroundColor = UIColor(named: "customYellow")
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
-        } else {
-            letterLabel.backgroundColor = UIColor.darkGray
-            setKeyColor(keyLetter: letterLabel.text ?? "", color: 3)
+            setOneLabelColor(targetLet: firstTargetLet, letterLabel: firstLetLabel)
+            setOneLabelColor(targetLet: secondTargetLet, letterLabel: secondLetLabel)
+            setOneLabelColor(targetLet: thirdTargetLet, letterLabel: thirdLetLabel)
+            setOneLabelColor(targetLet: fourthTargetLet, letterLabel: fourthLetLabel)
+            setOneLabelColor(targetLet: fifthTargetLet, letterLabel: fifthLetLabel)
         }
         
-        
-    }
+        func setOneLabelColor(targetLet: String, letterLabel: UILabel) {
+            
+            if (letterLabel.text == targetLet) {
+                letterLabel.backgroundColor = UIColor(named: "customGreen")
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 1)
+            } else if (letterLabel.text != firstTargetLet && letterLabel.text != secondTargetLet && letterLabel.text != thirdTargetLet && letterLabel.text != fourthTargetLet && letterLabel.text != fifthTargetLet) {
+                letterLabel.backgroundColor = UIColor.darkGray
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3)
+            } else if (letterLabel.text == firstTargetLet && firstLetLabel.text != firstTargetLet) {
+                letterLabel.backgroundColor = UIColor(named: "customYellow")
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+            } else if (letterLabel.text == secondTargetLet && secondLetLabel.text != secondTargetLet) {
+                letterLabel.backgroundColor = UIColor(named: "customYellow")
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+            } else if (letterLabel.text == thirdTargetLet && thirdLetLabel.text != thirdTargetLet) {
+                letterLabel.backgroundColor = UIColor(named: "customYellow")
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+            } else if (letterLabel.text == fourthTargetLet && fourthLetLabel.text != fourthTargetLet) {
+                letterLabel.backgroundColor = UIColor(named: "customYellow")
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+            } else if (letterLabel.text == fifthTargetLet && fifthLetLabel.text != fifthTargetLet) {
+                letterLabel.backgroundColor = UIColor(named: "customYellow")
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+            }
+                
+                
+        }
     
     func setKeyColor(keyLetter: String, color: Int) {
         
