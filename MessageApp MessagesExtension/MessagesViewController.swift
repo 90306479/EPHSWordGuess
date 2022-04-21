@@ -96,6 +96,7 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var didWin: String = "n"
     
+    @IBOutlet weak var scrollLabel: UILabel!
     
     
     @IBOutlet weak var allGuessesText: UITextView!
@@ -118,10 +119,11 @@ class MessagesViewController: MSMessagesAppViewController {
         if targetWord == "HI" {
             targetWord = wordOptions.randomElement() ?? ""
         }
-        //errorLabel.text = ""
-        errorLabel.text = targetWord
+        errorLabel.text = ""
         
         allGuessesText.text = ""
+        allGuessedWords = ""
+        scrollLabel.text = ""
         
         super.viewDidLoad()
     }
@@ -523,13 +525,13 @@ class MessagesViewController: MSMessagesAppViewController {
          
          for button in keyButtons {
              if button.titleLabel?.text == keyLetter {
-                 if color == 2 {
+                 if (color == 2 && keyColors[b] != "b") {
                      button.backgroundColor = UIColor(named: "customYellow")
                      keyColors[b] = "y"
                  } else if color == 1{
                      button.backgroundColor = UIColor(named: "customGreen")
                      keyColors[b] = "b"
-                 } else {
+                 } else if (keyColors[b] != "y" && keyColors[b] != "b"){
                      button.backgroundColor = UIColor.darkGray
                      keyColors[b] = "d"
                  }
@@ -727,6 +729,10 @@ class MessagesViewController: MSMessagesAppViewController {
 
             }
         
+        if numOfGuesses > 4 {
+            scrollLabel.text = "Scroll up to see more previous guesses^^"
+        }
+        
         setAllKeyColors()
         
         if (didWin == "y") {
@@ -806,7 +812,11 @@ class MessagesViewController: MSMessagesAppViewController {
         
         allGuessesText.attributedText = myMutableString
         
+        let range = NSRange(location: allGuessesText.text.count - 1, length: 1)
+        allGuessesText.scrollRangeToVisible(range)
+        
     }
+    
     
     
     
