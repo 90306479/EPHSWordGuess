@@ -327,7 +327,7 @@ class MessagesViewController: MSMessagesAppViewController {
                     didWin = "y"
                 }
                 let url = prepareURL()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.9){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.6){
                     self.prepareMessage(url)
                 }
                 
@@ -482,25 +482,17 @@ class MessagesViewController: MSMessagesAppViewController {
             fourthTargetLet = getWordLetter(num: 3, word: targetWord)
             fifthTargetLet = getWordLetter(num: 4, word: targetWord)
             allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
-            
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
-            self.setOneLabelColor(targetLet: self.firstTargetLet, letterLabel: self.firstLetLabel)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-            self.setOneLabelColor(targetLet: self.secondTargetLet, letterLabel: self.secondLetLabel)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
-            self.setOneLabelColor(targetLet: self.thirdTargetLet, letterLabel: self.thirdLetLabel)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
-            self.setOneLabelColor(targetLet: self.fourthTargetLet, letterLabel: self.fourthLetLabel)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3){
-            self.setOneLabelColor(targetLet: self.fifthTargetLet, letterLabel: self.fifthLetLabel)
-        }
-        }
+        
+        setOneLabelColor(targetLet: firstTargetLet, letterLabel: firstLetLabel)
+        setOneLabelColor(targetLet: secondTargetLet, letterLabel: secondLetLabel)
+        setOneLabelColor(targetLet: thirdTargetLet, letterLabel: thirdLetLabel)
+        setOneLabelColor(targetLet: fourthTargetLet, letterLabel: fourthLetLabel)
+        setOneLabelColor(targetLet: fifthTargetLet, letterLabel: fifthLetLabel)
+        
+    }
         
         func setOneLabelColor(targetLet: String, letterLabel: UILabel) {
+            
             
             if (letterLabel.text == targetLet) {
                 letterLabel.backgroundColor = UIColor(named: "customGreen")
@@ -526,6 +518,7 @@ class MessagesViewController: MSMessagesAppViewController {
             }
                 
                 
+            
         }
     
     func setKeyColor(keyLetter: String, color: Int) {
@@ -641,10 +634,10 @@ class MessagesViewController: MSMessagesAppViewController {
     
             if didWin == "y" {
                 layout.image = UIImage(named: "gameOverImage")
-                layout.caption = "game over!"
+                layout.caption = "Game Over!"
             } else {
                 layout.image = UIImage(named: "normalImage")
-                layout.caption = "let's play word guess!"
+                layout.caption = "Let's Play Word Guess!"
             }
     
             message.layout = layout
@@ -763,7 +756,7 @@ class MessagesViewController: MSMessagesAppViewController {
     
     func gameWon() {
         
-        allGuessesText.text = "you lost! \n\n the wordle was:"
+        allGuessesText.text = "YOU LOST! \n\n the wordle was:"
         allGuessesText.textColor = UIColor.black
         
         firstLetLabel.text = getWordLetter(num: 0, word: targetWord)
@@ -918,6 +911,8 @@ class MessagesViewController: MSMessagesAppViewController {
         // extension on a remote device.
         
         // Use this method to trigger UI updates in response to the message.
+        
+       
     }
     
     override func didStartSending(_ message: MSMessage, conversation: MSConversation) {
@@ -941,5 +936,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
+
 
 }
