@@ -483,12 +483,21 @@ class MessagesViewController: MSMessagesAppViewController {
             fifthTargetLet = getWordLetter(num: 4, word: targetWord)
             allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
             
-        
-            setOneLabelColor(targetLet: firstTargetLet, letterLabel: firstLetLabel)
-            setOneLabelColor(targetLet: secondTargetLet, letterLabel: secondLetLabel)
-            setOneLabelColor(targetLet: thirdTargetLet, letterLabel: thirdLetLabel)
-            setOneLabelColor(targetLet: fourthTargetLet, letterLabel: fourthLetLabel)
-            setOneLabelColor(targetLet: fifthTargetLet, letterLabel: fifthLetLabel)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+            self.setOneLabelColor(targetLet: self.firstTargetLet, letterLabel: self.firstLetLabel)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+            self.setOneLabelColor(targetLet: self.secondTargetLet, letterLabel: self.secondLetLabel)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7){
+            self.setOneLabelColor(targetLet: self.thirdTargetLet, letterLabel: self.thirdLetLabel)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){
+            self.setOneLabelColor(targetLet: self.fourthTargetLet, letterLabel: self.fourthLetLabel)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3){
+            self.setOneLabelColor(targetLet: self.fifthTargetLet, letterLabel: self.fifthLetLabel)
+        }
         }
         
         func setOneLabelColor(targetLet: String, letterLabel: UILabel) {
@@ -627,12 +636,15 @@ class MessagesViewController: MSMessagesAppViewController {
             let message = MSMessage()
     
             let layout = MSMessageTemplateLayout()
-            layout.caption = "let's play wordle!"
+        
+            
     
             if didWin == "y" {
                 layout.image = UIImage(named: "gameOverImage")
+                layout.caption = "game over!"
             } else {
                 layout.image = UIImage(named: "normalImage")
+                layout.caption = "let's play word guess!"
             }
     
             message.layout = layout
