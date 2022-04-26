@@ -24,7 +24,6 @@ class MessagesViewController: MSMessagesAppViewController {
     @IBOutlet weak var thirdLetLabel: UILabel!
     @IBOutlet weak var fourthLetLabel: UILabel!
     @IBOutlet weak var fifthLetLabel: UILabel!
-    @IBOutlet weak var hiddenLabel: UILabel!
     
     var currentLabel: UILabel!
     
@@ -108,7 +107,10 @@ class MessagesViewController: MSMessagesAppViewController {
     var myMutableString = NSMutableAttributedString()
     
     
+    @IBOutlet weak var compactView: UIView!
     
+    
+    @IBOutlet weak var swipeUpLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -125,7 +127,19 @@ class MessagesViewController: MSMessagesAppViewController {
         allGuessedWords = ""
         scrollLabel.text = ""
         
+        var numOfLetters: Int = 0
+        
         super.viewDidLoad()
+        
+        if presentationStyle == .compact {
+            compactView.backgroundColor = .white
+            swipeUpLabel.text = "Swipe Up to Start Word Guess!"
+            swipeUpLabel.textColor = UIColor.black
+        }
+        if presentationStyle == .expanded {
+            compactView.isHidden = true
+            swipeUpLabel.isHidden = true
+        }
     }
     
     
@@ -299,10 +313,22 @@ class MessagesViewController: MSMessagesAppViewController {
     
     
     @IBAction func BackTap(_ sender: Any) {
+        if firstLetLabel.text != "" {
         isActualWord = false
-        lastLabel()
-        currentLabel.text = ""
         errorLabel.text = ""
+            if secondLetLabel.text == "" {
+                firstLetLabel.text = ""
+            } else if thirdLetLabel.text == "" {
+                secondLetLabel.text = ""
+            } else if fourthLetLabel.text == "" {
+                thirdLetLabel.text = ""
+            } else if fifthLetLabel.text == "" {
+                fourthLetLabel.text = ""
+            } else {
+                fifthLetLabel.text = ""
+            }
+        }
+
     }
     
     @IBAction func GoTap(_ sender: Any) {
@@ -327,7 +353,7 @@ class MessagesViewController: MSMessagesAppViewController {
                     didWin = "y"
                 }
                 let url = prepareURL()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.6){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8){
                     self.prepareMessage(url)
                 }
                 
@@ -343,50 +369,24 @@ class MessagesViewController: MSMessagesAppViewController {
     
     
     func setLabel(letter: String) {
-        currentLabel.text = letter
-        if currentLabel == firstLetLabel {
+        if firstLetLabel.text == "" {
+            firstLetLabel.text = letter
             firstGuessedLet = letter
-        } else if currentLabel == secondLetLabel{
+        } else if secondLetLabel.text == "" {
+            secondLetLabel.text = letter
             secondGuessedLet = letter
-        } else if currentLabel == thirdLetLabel{
+        } else if thirdLetLabel.text == "" {
+            thirdLetLabel.text = letter
             thirdGuessedLet = letter
-        } else if currentLabel == fourthLetLabel{
+        } else if fourthLetLabel.text == "" {
+            fourthLetLabel.text = letter
             fourthGuessedLet = letter
-        } else if currentLabel == fifthLetLabel{
+        } else if fifthLetLabel.text == "" {
+            fifthLetLabel.text = letter
             fifthGuessedLet = letter
         }
-        nextLabel()
     }
     
-    
-    func nextLabel(){
-        if (currentLabel == firstLetLabel) {
-        currentLabel = secondLetLabel
-        } else if (currentLabel == secondLetLabel) {
-            currentLabel = thirdLetLabel
-        } else if (currentLabel == thirdLetLabel) {
-            currentLabel = fourthLetLabel
-        } else if (currentLabel == fourthLetLabel) {
-            currentLabel = fifthLetLabel
-        } else if (currentLabel == fifthLetLabel) {
-            currentLabel = hiddenLabel
-        }
-    }
-    
-    
-    func lastLabel(){
-        if (currentLabel == secondLetLabel) {
-        currentLabel = firstLetLabel
-        } else if (currentLabel == thirdLetLabel) {
-            currentLabel = secondLetLabel
-        } else if (currentLabel == fourthLetLabel) {
-            currentLabel = thirdLetLabel
-        } else if (currentLabel == fifthLetLabel) {
-            currentLabel = fourthLetLabel
-        } else if (currentLabel == hiddenLabel) {
-            currentLabel = fifthLetLabel
-        }
-    }
     
 //    func setLabelColors() {
 //
@@ -515,6 +515,9 @@ class MessagesViewController: MSMessagesAppViewController {
             } else if (letterLabel.text == fifthTargetLet && fifthLetLabel.text != fifthTargetLet) {
                 letterLabel.backgroundColor = UIColor(named: "customYellow")
                 setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+            } else {
+                letterLabel.backgroundColor = UIColor.darkGray
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3)
             }
                 
                 
@@ -626,8 +629,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     func prepareMessage(_ url: URL) {
     
-            let message = MSMessage()
-    
             let layout = MSMessageTemplateLayout()
         
             
@@ -640,16 +641,19 @@ class MessagesViewController: MSMessagesAppViewController {
                 layout.caption = "Let's Play Word Guess!"
             }
     
+            let message = MSMessage()
             message.layout = layout
             message.url = url
+        
+            activeConversation?.insert(message, completionHandler: nil)
     
-            let conversation = self.activeConversation
-    
-            conversation?.insert(message, completionHandler: {(error) in
-                if let error = error {
-                    print(error)
-                }
-            })
+//            let conversation = self.activeConversation
+//
+//            conversation?.insert(message, completionHandler: {(error) in
+//                if let error = error {
+//                    print(error)
+//                }
+//            })
     
             self.dismiss()
     
@@ -756,7 +760,8 @@ class MessagesViewController: MSMessagesAppViewController {
     
     func gameWon() {
         
-        allGuessesText.text = "YOU LOST! \n\n the wordle was:"
+        
+        allGuessesText.text = "YOU LOST! \n\n the word was:"
         allGuessesText.textColor = UIColor.black
         
         firstLetLabel.text = getWordLetter(num: 0, word: targetWord)
@@ -764,6 +769,7 @@ class MessagesViewController: MSMessagesAppViewController {
         thirdLetLabel.text = getWordLetter(num: 2, word: targetWord)
         fourthLetLabel.text = getWordLetter(num: 3, word: targetWord)
         fifthLetLabel.text = getWordLetter(num: 4, word: targetWord)
+        
     }
     
     
@@ -821,68 +827,7 @@ class MessagesViewController: MSMessagesAppViewController {
         allGuessesText.scrollRangeToVisible(range)
         
     }
-    
-    
-    
-    
-    
-//    @IBAction func clickedGuess(_ sender: UIButton) {
-//        let url = prepareURL()
-//        prepareMessage(url)
-//    }
-    
-    
-//    func prepareURL() -> URL {
-//
-//        var urlComponents = URLComponents()
-//        urlComponents.scheme = "https";
-//        urlComponents.host = "www.ebookfrenzy.com";
-//        let guessQuery = URLQueryItem(name: "Guess", value: currentGuess)
-//        let allGuessesQuery = URLQueryItem(name: "allGuesses", value: guesses)
-//        urlComponents.queryItems = [guessQuery, allGuessesQuery]
-//        return urlComponents.url!
-//
-//    }
-    
-//    func prepareMessage(_ url: URL) {
-//
-//        let message = MSMessage()
-//
-//        let layout = MSMessageTemplateLayout()
-//        layout.caption = caption
-//
-//        layout.image = UIImage(named: "icon")
-//
-//        message.layout = layout
-//        message.url = url
-//
-//        let conversation = self.activeConversation
-//
-//        conversation?.insert(message, completionHandler: {(error) in
-//            if let error = error {
-//                print(error)
-//            }
-//        })
-//
-//        self.dismiss()
-//
-//    }
-    
-//    func decodeURL(_ url: URL) {
-//
-//        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-//
-//        for (index, queryItem) in (components?.queryItems?.enumerated())! {
-////            if queryItem.name == "Guess" {
-////                lastGuess = queryItem.value ?? ""
-////                previousGuess.text = lastGuess
-////            }
-//            if queryItem.name == "allGuesses" {
-//                guesses = queryItem.value ?? ""
-//                previousGuess.text = guesses
-//            }
-//        }
-//    }
+   
     
     
     
@@ -910,6 +855,23 @@ class MessagesViewController: MSMessagesAppViewController {
         // Called when a message arrives that was generated by another instance of this
         // extension on a remote device.
         
+        
+                let layout = MSMessageTemplateLayout()
+            
+                
+        
+                if didWin == "y" {
+                    layout.image = UIImage(named: "gameOverImage")
+                    layout.caption = "You Lost!"
+                } else {
+                    layout.image = UIImage(named: "normalImage")
+                    layout.caption = "Let's Play Word Guess!"
+                }
+                message.layout = layout
+            
+                activeConversation?.insert(message, completionHandler: nil)
+        
+        
         // Use this method to trigger UI updates in response to the message.
         
        
@@ -933,6 +895,11 @@ class MessagesViewController: MSMessagesAppViewController {
     
     override func didTransition(to presentationStyle: MSMessagesAppPresentationStyle) {
         // Called after the extension transitions to a new presentation style.
+        
+        if presentationStyle == .expanded {
+            compactView.isHidden = true
+            swipeUpLabel.isHidden = true
+        }
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
