@@ -133,7 +133,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
         if presentationStyle == .compact {
             compactView.backgroundColor = .white
-            swipeUpLabel.text = "Swipe Up to Start Word Guess!"
+            swipeUpLabel.text = "^^^^\nSwipe Up to Play Word Guess!"
             swipeUpLabel.textColor = UIColor.black
         }
         if presentationStyle == .expanded {
@@ -348,8 +348,14 @@ class MessagesViewController: MSMessagesAppViewController {
                 
                 setLabelColors()
                 if guessedWord == targetWord {
-                    allGuessesText.text = "YOU WIN!"
-                    allGuessesText.textColor = UIColor.black
+                    myMutableString = NSMutableAttributedString(string: "YOU WIN!")
+                    myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
+                    myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSMakeRange(0, myMutableString.length))
+                    myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 32), range: NSMakeRange(0, myMutableString.length))
+                    let paragraph = NSMutableParagraphStyle()
+                    paragraph.alignment = .center
+                    myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
+                    allGuessesText.attributedText = myMutableString
                     didWin = "y"
                 }
                 let url = prepareURL()
@@ -760,9 +766,15 @@ class MessagesViewController: MSMessagesAppViewController {
     
     func gameWon() {
         
+        myMutableString = NSMutableAttributedString(string: "    YOU LOST!\nthe word was:  ")
+        myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
+        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(0, myMutableString.length))
+        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 32), range: NSMakeRange(0, myMutableString.length))
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
+        allGuessesText.attributedText = myMutableString
         
-        allGuessesText.text = "YOU LOST! \n\n the word was:"
-        allGuessesText.textColor = UIColor.black
         
         firstLetLabel.text = getWordLetter(num: 0, word: targetWord)
         secondLetLabel.text = getWordLetter(num: 1, word: targetWord)
