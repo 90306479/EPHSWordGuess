@@ -359,7 +359,7 @@ class MessagesViewController: MSMessagesAppViewController {
                     didWin = "y"
                 }
                 let url = prepareURL()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8){
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2){
                     self.prepareMessage(url)
                 }
                 
@@ -489,61 +489,91 @@ class MessagesViewController: MSMessagesAppViewController {
             fifthTargetLet = getWordLetter(num: 4, word: targetWord)
             allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
         
-        setOneLabelColor(targetLet: firstTargetLet, letterLabel: firstLetLabel)
-        setOneLabelColor(targetLet: secondTargetLet, letterLabel: secondLetLabel)
-        setOneLabelColor(targetLet: thirdTargetLet, letterLabel: thirdLetLabel)
-        setOneLabelColor(targetLet: fourthTargetLet, letterLabel: fourthLetLabel)
-        setOneLabelColor(targetLet: fifthTargetLet, letterLabel: fifthLetLabel)
+        
+        setOneLabelColor(targetLet: firstTargetLet, letterLabel: firstLetLabel, delay: 0.2)
+        setOneLabelColor(targetLet: secondTargetLet, letterLabel: secondLetLabel, delay: 0.5)
+        setOneLabelColor(targetLet: thirdTargetLet, letterLabel: thirdLetLabel, delay: 0.8)
+        setOneLabelColor(targetLet: fourthTargetLet, letterLabel: fourthLetLabel, delay: 1.1)
+        setOneLabelColor(targetLet: fifthTargetLet, letterLabel: fifthLetLabel, delay: 1.4)
         
     }
         
-        func setOneLabelColor(targetLet: String, letterLabel: UILabel) {
+    func setOneLabelColor(targetLet: String, letterLabel: UILabel, delay: Double) {
             
             
             if (letterLabel.text == targetLet) {
-                letterLabel.backgroundColor = UIColor(named: "customGreen")
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 1)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor(named: "customGreen")
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 1, delay: delay)
+                
             } else if (letterLabel.text != firstTargetLet && letterLabel.text != secondTargetLet && letterLabel.text != thirdTargetLet && letterLabel.text != fourthTargetLet && letterLabel.text != fifthTargetLet) {
-                letterLabel.backgroundColor = UIColor.darkGray
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor.darkGray
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3, delay: delay)
+                
             } else if (letterLabel.text == firstTargetLet && firstLetLabel.text != firstTargetLet) {
-                letterLabel.backgroundColor = UIColor(named: "customYellow")
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor(named: "customYellow")
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
             } else if (letterLabel.text == secondTargetLet && secondLetLabel.text != secondTargetLet) {
-                letterLabel.backgroundColor = UIColor(named: "customYellow")
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor(named: "customYellow")
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
+                
             } else if (letterLabel.text == thirdTargetLet && thirdLetLabel.text != thirdTargetLet) {
-                letterLabel.backgroundColor = UIColor(named: "customYellow")
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor(named: "customYellow")
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
+                
             } else if (letterLabel.text == fourthTargetLet && fourthLetLabel.text != fourthTargetLet) {
-                letterLabel.backgroundColor = UIColor(named: "customYellow")
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor(named: "customYellow")
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
+                
             } else if (letterLabel.text == fifthTargetLet && fifthLetLabel.text != fifthTargetLet) {
-                letterLabel.backgroundColor = UIColor(named: "customYellow")
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor(named: "customYellow")
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
+                
             } else {
-                letterLabel.backgroundColor = UIColor.darkGray
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3)
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    letterLabel.backgroundColor = UIColor.darkGray
+                }
+                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3, delay: delay)
+                
             }
                 
                 
             
         }
     
-    func setKeyColor(keyLetter: String, color: Int) {
+    func setKeyColor(keyLetter: String, color: Int, delay: Double) {
         
         var b = 0
          
          for button in keyButtons {
              if button.titleLabel?.text == keyLetter {
                  if (color == 2 && keyColors[b] != "b") {
+                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                      button.backgroundColor = UIColor(named: "customYellow")
+                     }
                      keyColors[b] = "y"
                  } else if color == 1{
+                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                      button.backgroundColor = UIColor(named: "customGreen")
+                     }
                      keyColors[b] = "b"
                  } else if (keyColors[b] != "y" && keyColors[b] != "b"){
+                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                      button.backgroundColor = UIColor.darkGray
+                     }
                      keyColors[b] = "d"
                  }
              }
