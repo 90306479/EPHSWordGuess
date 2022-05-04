@@ -168,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "MessageApp" */;
+			buildConfigurationList = 5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "EPHS Word Guess" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -448,7 +448,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "MessageApp" */ = {
+		5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "EPHS Word Guess" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7537D227C93D0500088597 /* Debug */,
