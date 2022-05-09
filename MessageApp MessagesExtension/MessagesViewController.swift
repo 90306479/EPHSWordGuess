@@ -107,6 +107,7 @@ class MessagesViewController: MSMessagesAppViewController {
     var allGuessedWords: String!
     
     var myMutableString = NSMutableAttributedString()
+    var gameOverMutableString = NSMutableAttributedString()
     
     
     @IBOutlet weak var compactView: UIView!
@@ -303,7 +304,7 @@ class MessagesViewController: MSMessagesAppViewController {
             } else if keyColors[c] == "y" {
                 button.backgroundColor = UIColor(named: "customYellow")
             } else if keyColors[c] == "d"{
-                button.backgroundColor = UIColor.darkGray
+                button.backgroundColor = UIColor(named: "greyKeys")
             }
             
             c = c+1
@@ -350,6 +351,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 
                 setLabelColors()
                 if guessedWord == targetWord {
+                    scrollLabel.text = ""
                     myMutableString = NSMutableAttributedString(string: "YOU WIN!")
                     myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
                     myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSMakeRange(0, myMutableString.length))
@@ -511,7 +513,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 
             } else if (letterLabel.text != firstTargetLet && letterLabel.text != secondTargetLet && letterLabel.text != thirdTargetLet && letterLabel.text != fourthTargetLet && letterLabel.text != fifthTargetLet) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor.darkGray
+                    letterLabel.backgroundColor = UIColor(named: "customGrey")
                 }
                 setKeyColor(keyLetter: letterLabel.text ?? "", color: 3, delay: delay)
                 
@@ -546,7 +548,7 @@ class MessagesViewController: MSMessagesAppViewController {
                 
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor.darkGray
+                    letterLabel.backgroundColor = UIColor(named: "customGrey")
                 }
                 setKeyColor(keyLetter: letterLabel.text ?? "", color: 3, delay: delay)
                 
@@ -574,7 +576,7 @@ class MessagesViewController: MSMessagesAppViewController {
                      keyColors[b] = "b"
                  } else if (keyColors[b] != "y" && keyColors[b] != "b"){
                      DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                     button.backgroundColor = UIColor.darkGray
+                     button.backgroundColor = UIColor(named: "greyKeys")
                      }
                      keyColors[b] = "d"
                  }
@@ -777,8 +779,8 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         
         
-        if numOfGuesses > 4 {
-            scrollLabel.text = "Scroll up to see more previous guesses^^"
+        if numOfGuesses > 3 {
+            scrollLabel.text = "Previous Guesses^^"
         }
         
         setAllKeyColors()
@@ -787,33 +789,39 @@ class MessagesViewController: MSMessagesAppViewController {
             
             gameWon()
             
-        } else {
+        }
 
         setGuessLabels()
         //allGuessesLabel.text = allGuessedWords
             //allGuessesLabel.textColor = UIColor.black
         
-        }
+        
 
         }
     
     func gameWon() {
         
-        myMutableString = NSMutableAttributedString(string: "    YOU LOST!\nthe word was:  ")
-        myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
-        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(0, myMutableString.length))
-        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 32), range: NSMakeRange(0, myMutableString.length))
-        let paragraph = NSMutableParagraphStyle()
-        paragraph.alignment = .center
-        myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
-        allGuessesText.attributedText = myMutableString
+        scrollLabel.text = ""
+//        myMutableString = NSMutableAttributedString(string: "GAME  OVER")
+//        myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
+//        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(0, myMutableString.length))
+//        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 32), range: NSMakeRange(0, myMutableString.length))
+//        let paragraph = NSMutableParagraphStyle()
+//        paragraph.alignment = .center
+//        myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
+//        allGuessesText.attributedText = myMutableString
         
         
         firstLetLabel.text = getWordLetter(num: 0, word: targetWord)
+        firstLetLabel.backgroundColor = UIColor(named: "customGreen")
         secondLetLabel.text = getWordLetter(num: 1, word: targetWord)
+        secondLetLabel.backgroundColor = UIColor(named: "customGreen")
         thirdLetLabel.text = getWordLetter(num: 2, word: targetWord)
+        thirdLetLabel.backgroundColor = UIColor(named: "customGreen")
         fourthLetLabel.text = getWordLetter(num: 3, word: targetWord)
+        fourthLetLabel.backgroundColor = UIColor(named: "customGreen")
         fifthLetLabel.text = getWordLetter(num: 4, word: targetWord)
+        fifthLetLabel.backgroundColor = UIColor(named: "customGreen")
         
     }
     
@@ -851,7 +859,7 @@ class MessagesViewController: MSMessagesAppViewController {
             myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
         }
         else {
-            myMutableString.addAttribute(.backgroundColor, value: UIColor.darkGray, range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
+            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGrey"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
         }
          
             i = i+1
@@ -861,12 +869,29 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         
         myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
-        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 32), range: NSMakeRange(0, myMutableString.length))
+        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 34), range: NSMakeRange(0, myMutableString.length))
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
         
+        if (didWin == "y") {
+            
+            gameOverMutableString = NSMutableAttributedString(string: "\n\nGAME OVER")
+            gameOverMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(2, gameOverMutableString.length-2))
+            gameOverMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(2, gameOverMutableString.length-2))
+            gameOverMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 34), range: NSMakeRange(2, gameOverMutableString.length-2))
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = .center
+            gameOverMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(2, gameOverMutableString.length-2))
+            
+            myMutableString.append(gameOverMutableString)
+            allGuessesText.attributedText = myMutableString
+            
+        } else {
+        
         allGuessesText.attributedText = myMutableString
+            
+        }
         
         let range = NSRange(location: allGuessesText.text.count - 1, length: 1)
         allGuessesText.scrollRangeToVisible(range)
