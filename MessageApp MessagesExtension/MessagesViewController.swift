@@ -243,7 +243,7 @@ class MessagesViewController: MSMessagesAppViewController {
     }
     @IBAction func JTap(_ sender: Any) {
         if (didWin == "n") {
-        setLabel(letter: "K")
+        setLabel(letter: "J")
         }
     }
     @IBAction func KTap(_ sender: Any) {
