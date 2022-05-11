@@ -60,7 +60,6 @@ class MessagesViewController: MSMessagesAppViewController {
     
     var letterLabels:[UILabel]!
     
-    
     var keyButtons:[UIButton]!
     
     var keyColors:[String] = ["g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g"]
@@ -109,11 +108,13 @@ class MessagesViewController: MSMessagesAppViewController {
     var myMutableString = NSMutableAttributedString()
     var gameOverMutableString = NSMutableAttributedString()
     
-    
     @IBOutlet weak var compactView: UIView!
     
-    
     @IBOutlet weak var swipeUpLabel: UILabel!
+    
+    var allLetterColors: String = ""
+    
+    
     
     
     override func viewDidLoad() {
@@ -350,6 +351,7 @@ class MessagesViewController: MSMessagesAppViewController {
             if isActualWord {
                 
                 setLabelColors()
+                
                 if guessedWord == targetWord {
                     scrollLabel.text = ""
                     myMutableString = NSMutableAttributedString(string: "YOU WIN!")
@@ -362,9 +364,9 @@ class MessagesViewController: MSMessagesAppViewController {
                     allGuessesText.attributedText = myMutableString
                     didWin = "y"
                 }
-                let url = prepareURL()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2){
-                    self.prepareMessage(url)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) { [self] in
+                    let url = prepareURL()
+                    prepareMessage(url)
                 }
                 
             } else {
@@ -431,25 +433,35 @@ class MessagesViewController: MSMessagesAppViewController {
         allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
         
         // SET GREEN LABELS
-        if (firstLetLabel.text == firstTargetLet) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [self] in
+            if (firstLetLabel.text == firstTargetLet) {
                 firstLetLabel.backgroundColor = UIColor(named: "customGreen")
-            
+                setKeyColor(keyLetter: firstLetLabel.text ?? "", color: 1)
+            }
         }
-        if (secondLetLabel.text == secondTargetLet) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+            if (secondLetLabel.text == secondTargetLet) {
                 secondLetLabel.backgroundColor = UIColor(named: "customGreen")
-            
+                setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 1)
+            }
         }
-        if (thirdLetLabel.text == thirdTargetLet) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
+            if (thirdLetLabel.text == thirdTargetLet) {
                 thirdLetLabel.backgroundColor = UIColor(named: "customGreen")
-            
+                setKeyColor(keyLetter: thirdLetLabel.text ?? "", color: 1)
+            }
         }
-        if (fourthLetLabel.text == fourthTargetLet) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [self] in
+            if (fourthLetLabel.text == fourthTargetLet) {
                 fourthLetLabel.backgroundColor = UIColor(named: "customGreen")
-            
+                setKeyColor(keyLetter: fourthLetLabel.text ?? "", color: 1)
+            }
         }
-        if (fifthLetLabel.text == fifthTargetLet) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [self] in
+            if (fifthLetLabel.text == fifthTargetLet) {
                 fifthLetLabel.backgroundColor = UIColor(named: "customGreen")
-            
+                setKeyColor(keyLetter: fifthLetLabel.text ?? "", color: 1)
+            }
         }
         
         
@@ -479,9 +491,12 @@ class MessagesViewController: MSMessagesAppViewController {
         //SET YELLOW TILES
         var m = 0
         for letter in allTargetLets {
+            
             if (firstLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == firstLetLabel.text) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [self] in
                     firstLetLabel.backgroundColor = UIColor(named: "customYellow")
-                
+                    setKeyColor(keyLetter: firstLetLabel.text ?? "", color: 2)
+                }
                 allTargetLets.remove(at: m)
                 m = m-1
             }
@@ -490,8 +505,10 @@ class MessagesViewController: MSMessagesAppViewController {
         var n = 0
         for letter in allTargetLets {
             if (secondLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == secondLetLabel.text) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
                     secondLetLabel.backgroundColor = UIColor(named: "customYellow")
-                
+                    setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 2)
+                }
                 allTargetLets.remove(at: n)
                 n = n-1
             }
@@ -500,8 +517,10 @@ class MessagesViewController: MSMessagesAppViewController {
         var o = 0
         for letter in allTargetLets {
             if (thirdLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == thirdLetLabel.text) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
                     thirdLetLabel.backgroundColor = UIColor(named: "customYellow")
-                
+                    setKeyColor(keyLetter: thirdLetLabel.text ?? "", color: 2)
+                }
                 allTargetLets.remove(at: o)
                 o = o-1
             }
@@ -510,9 +529,11 @@ class MessagesViewController: MSMessagesAppViewController {
         var p = 0
         for letter in allTargetLets {
             if (fourthLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == fourthLetLabel.text) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [self] in
                     fourthLetLabel.backgroundColor = UIColor(named: "customYellow")
-                
-                allTargetLets.remove(at: p)
+                    setKeyColor(keyLetter: fourthLetLabel.text ?? "", color: 2)
+                }
+                    allTargetLets.remove(at: p)
                 p = p-1
             }
             p = p+1
@@ -520,8 +541,10 @@ class MessagesViewController: MSMessagesAppViewController {
         var q = 0
         for letter in allTargetLets {
             if (fifthLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == fifthLetLabel.text) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [self] in
                     fifthLetLabel.backgroundColor = UIColor(named: "customYellow")
-                
+                    setKeyColor(keyLetter: fifthLetLabel.text ?? "", color: 2)
+                }
                 allTargetLets.remove(at: q)
                 q = q-1
             }
@@ -530,105 +553,61 @@ class MessagesViewController: MSMessagesAppViewController {
         
         
         //SET GREY TILES
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [self] in
         if (firstLetLabel.backgroundColor != UIColor(named: "customGreen") && firstLetLabel.backgroundColor != UIColor(named: "customYellow")) {
                firstLetLabel.backgroundColor = UIColor(named: "customGrey")
+                setKeyColor(keyLetter: firstLetLabel.text ?? "", color: 3)
             
         }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
         if (secondLetLabel.backgroundColor != UIColor(named: "customGreen") && secondLetLabel.backgroundColor != UIColor(named: "customYellow")) {
                 secondLetLabel.backgroundColor = UIColor(named: "customGrey")
+            setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 3)
             
         }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
         if (thirdLetLabel.backgroundColor != UIColor(named: "customGreen") && thirdLetLabel.backgroundColor != UIColor(named: "customYellow")) {
                 thirdLetLabel.backgroundColor = UIColor(named: "customGrey")
+            setKeyColor(keyLetter: thirdLetLabel.text ?? "", color: 3)
             
         }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [self] in
         if (fourthLetLabel.backgroundColor != UIColor(named: "customGreen") && fourthLetLabel.backgroundColor != UIColor(named: "customYellow")) {
                 fourthLetLabel.backgroundColor = UIColor(named: "customGrey")
-            }
+            setKeyColor(keyLetter: fourthLetLabel.text ?? "", color: 3)
+            
         }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [self] in
         if (fifthLetLabel.backgroundColor != UIColor(named: "customGreen") && fifthLetLabel.backgroundColor != UIColor(named: "customYellow")) {
                 fifthLetLabel.backgroundColor = UIColor(named: "customGrey")
+            setKeyColor(keyLetter: fifthLetLabel.text ?? "", color: 3)
             
+        }
         }
  
     }
-        
-    func setOneLabelColor(targetLet: String, letterLabel: UILabel, delay: Double) {
-            
-            
-            if (letterLabel.text == targetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customGreen")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 1, delay: delay)
-                
-            } else if (letterLabel.text != firstTargetLet && letterLabel.text != secondTargetLet && letterLabel.text != thirdTargetLet && letterLabel.text != fourthTargetLet && letterLabel.text != fifthTargetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customGrey")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3, delay: delay)
-                
-            } else if (letterLabel.text == firstTargetLet && firstLetLabel.text != firstTargetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customYellow")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
-            } else if (letterLabel.text == secondTargetLet && secondLetLabel.text != secondTargetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customYellow")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
-                
-            } else if (letterLabel.text == thirdTargetLet && thirdLetLabel.text != thirdTargetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customYellow")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
-                
-            } else if (letterLabel.text == fourthTargetLet && fourthLetLabel.text != fourthTargetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customYellow")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
-                
-            } else if (letterLabel.text == fifthTargetLet && fifthLetLabel.text != fifthTargetLet) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customYellow")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 2, delay: delay)
-                
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    letterLabel.backgroundColor = UIColor(named: "customGrey")
-                }
-                setKeyColor(keyLetter: letterLabel.text ?? "", color: 3, delay: delay)
-                
-            }
-                
-                
-            
-        }
     
-    func setKeyColor(keyLetter: String, color: Int, delay: Double) {
+    
+    func setKeyColor(keyLetter: String, color: Int) {
         
         var b = 0
          
          for button in keyButtons {
              if button.titleLabel?.text == keyLetter {
                  if (color == 2 && keyColors[b] != "b") {
-                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                      button.backgroundColor = UIColor(named: "customYellow")
-                     }
                      keyColors[b] = "y"
-                 } else if color == 1{
-                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                 } else if color == 1 {
                      button.backgroundColor = UIColor(named: "customGreen")
-                     }
+                     
                      keyColors[b] = "b"
                  } else if (keyColors[b] != "y" && keyColors[b] != "b"){
-                     DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                      button.backgroundColor = UIColor(named: "greyKeys")
-                     }
+                     
                      keyColors[b] = "d"
                  }
              }
@@ -678,6 +657,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
             allGuessedWords = (allGuessedWords ?? "") + "\n\n" + (guessedWordWSpace ?? "")
             numOfGuesses+=1
+            addLetterColors()
    
            var urlComponents = URLComponents()
            urlComponents.scheme = "https";
@@ -713,10 +693,23 @@ class MessagesViewController: MSMessagesAppViewController {
         let xKeyQuery = URLQueryItem(name: "xKeyColor", value: keyColors[23])
         let yKeyQuery = URLQueryItem(name: "yKeyColor", value: keyColors[24])
         let zKeyQuery = URLQueryItem(name: "zKeyColor", value: keyColors[25])
-        urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery, guessNumQuery, didWinQuery, aKeyQuery, bKeyQuery, cKeyQuery, dKeyQuery, eKeyQuery, fKeyQuery, gKeyQuery, hKeyQuery, iKeyQuery, jKeyQuery, kKeyQuery, lKeyQuery, mKeyQuery, nKeyQuery, oKeyQuery, pKeyQuery, qKeyQuery, rKeyQuery, sKeyQuery, tKeyQuery, uKeyQuery, vKeyQuery, wKeyQuery, xKeyQuery, yKeyQuery, zKeyQuery]
+        let letterColors = URLQueryItem(name: "letterColors", value: allLetterColors)
+        urlComponents.queryItems = [guessQuery, targetQuery, allWordsQuery, guessNumQuery, didWinQuery, aKeyQuery, bKeyQuery, cKeyQuery, dKeyQuery, eKeyQuery, fKeyQuery, gKeyQuery, hKeyQuery, iKeyQuery, jKeyQuery, kKeyQuery, lKeyQuery, mKeyQuery, nKeyQuery, oKeyQuery, pKeyQuery, qKeyQuery, rKeyQuery, sKeyQuery, tKeyQuery, uKeyQuery, vKeyQuery, wKeyQuery, xKeyQuery, yKeyQuery, zKeyQuery, letterColors]
            return urlComponents.url!
    
        }
+    
+    func addLetterColors(){
+        for label in letterLabels {
+            if label.backgroundColor == UIColor(named: "customGreen") {
+                allLetterColors = allLetterColors + "b"
+            } else if label.backgroundColor == UIColor(named: "customYellow") {
+                allLetterColors = allLetterColors + "y"
+            } else {
+                allLetterColors = allLetterColors + "g"
+            }
+        }
+    }
     
     func prepareMessage(_ url: URL) {
     
@@ -738,13 +731,6 @@ class MessagesViewController: MSMessagesAppViewController {
         
             activeConversation?.insert(message, completionHandler: nil)
     
-//            let conversation = self.activeConversation
-//
-//            conversation?.insert(message, completionHandler: {(error) in
-//                if let error = error {
-//                    print(error)
-//                }
-//            })
     
             self.dismiss()
     
@@ -771,6 +757,9 @@ class MessagesViewController: MSMessagesAppViewController {
                 }
                 if queryItem.name == "didWin" {
                     didWin = queryItem.value ?? "n"
+                }
+                if queryItem.name == "letterColors" {
+                    allLetterColors = queryItem.value ?? "ggggg"
                 }
                 if queryItem.name == "aKeyColor" {
                     keyColors[0] = queryItem.value ?? "g"
@@ -883,6 +872,7 @@ class MessagesViewController: MSMessagesAppViewController {
         
         myMutableString = NSMutableAttributedString(string: allGuessedWords)
         
+        
         var j:Int = numOfGuesses - 1
         
         while j >= 0 {
@@ -891,27 +881,15 @@ class MessagesViewController: MSMessagesAppViewController {
         
         while i < 5 {
             
-        if (getWordLetter(num: ((i*2)+2) + (j*11), word: allGuessedWords) == getWordLetter(num: i, word: targetWord)){
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
-        else if (getWordLetter(num: ((i*2)+2) + (j*11), word: allGuessedWords) == getWordLetter(num: 0, word: targetWord)) && (getWordLetter(num: 2 + (j*11), word: allGuessedWords) != getWordLetter(num: 0, word: targetWord)){
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
-        else if (getWordLetter(num: ((i*2)+2) + (j*11), word: allGuessedWords) == getWordLetter(num: 1, word: targetWord)) && (getWordLetter(num: 4 + (j*11), word: allGuessedWords) != getWordLetter(num: 1, word: targetWord)){
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
-        else if (getWordLetter(num: ((i*2)+2) + (j*11), word: allGuessedWords) == getWordLetter(num: 2, word: targetWord)) && (getWordLetter(num: 6 + (j*11), word: allGuessedWords) != getWordLetter(num: 2, word: targetWord)){
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
-        else if (getWordLetter(num: ((i*2)+2) + (j*11), word: allGuessedWords) == getWordLetter(num: 3, word: targetWord)) && (getWordLetter(num: 8 + (j*11), word: allGuessedWords) != getWordLetter(num: 3, word: targetWord)){
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
-        else if (getWordLetter(num: ((i*2)+2) + (j*11), word: allGuessedWords) == getWordLetter(num: 4, word: targetWord)) && (getWordLetter(num: 10 + (j*11), word: allGuessedWords) != getWordLetter(num: 4, word: targetWord)){
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
-        else {
-            myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGrey"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
-        }
+            
+            if (getWordLetter(num: (j*5) + i, word: allLetterColors) == "b") {
+                myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGreen"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
+            } else if (getWordLetter(num: (j*5) + i, word: allLetterColors) == "y") {
+                myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customYellow"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
+            } else {
+                myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customGrey"), range: NSRange(location: ((i*2)+2) + (j*11), length: 1))
+            }
+            
          
             i = i+1
             
@@ -948,7 +926,8 @@ class MessagesViewController: MSMessagesAppViewController {
         allGuessesText.scrollRangeToVisible(range)
         
     }
-   
+    
+    
     
     
     
@@ -1010,6 +989,8 @@ class MessagesViewController: MSMessagesAppViewController {
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
+
+
 
 
 }
