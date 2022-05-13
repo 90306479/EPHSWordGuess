@@ -601,12 +601,12 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="32"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="previous guesses^" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPX-PK-E1W">
-                                <rect key="frame" x="16" y="115" width="60" height="56"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="previous guesses^" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPX-PK-E1W">
+                                <rect key="frame" x="15" y="225" width="60" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="EZ1-Ad-Y7f"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -644,7 +644,7 @@
                             <constraint firstItem="3FK-su-GpT" firstAttribute="top" secondItem="zMn-AG-sqS" secondAttribute="top" id="X8P-Pg-JbN"/>
                             <constraint firstItem="esl-Gh-Nwe" firstAttribute="leading" secondItem="EPX-PK-E1W" secondAttribute="trailing" constant="5" id="c6g-WQ-oyu"/>
                             <constraint firstAttribute="trailing" secondItem="gwl-Dv-9gx" secondAttribute="trailing" constant="30" id="cbG-iP-KXb"/>
-                            <constraint firstItem="EPX-PK-E1W" firstAttribute="top" secondItem="sid-Bb-ysE" secondAttribute="bottom" constant="100" id="dO2-gU-bkj"/>
+                            <constraint firstItem="EPX-PK-E1W" firstAttribute="top" secondItem="sid-Bb-ysE" secondAttribute="bottom" constant="150" id="dO2-gU-bkj"/>
                             <constraint firstItem="gwl-Dv-9gx" firstAttribute="top" secondItem="FAw-nf-ZGE" secondAttribute="bottom" constant="20" id="e6v-e9-BZE"/>
                             <constraint firstAttribute="bottom" secondItem="3FK-su-GpT" secondAttribute="bottom" id="enC-CO-44z"/>
                             <constraint firstItem="rQw-by-Q0p" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" constant="25" id="hQF-Im-fv4"/>
