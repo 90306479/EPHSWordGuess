@@ -967,6 +967,9 @@ class MessagesViewController: MSMessagesAppViewController {
         if presentationStyle == .expanded {
             compactView.isHidden = true
         }
+        if presentationStyle == .compact {
+            compactView.isHidden = false
+        }
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
     }
