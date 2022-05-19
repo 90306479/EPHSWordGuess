@@ -121,12 +121,11 @@ class MessagesViewController: MSMessagesAppViewController {
         keyButtons = [AKey, BKey, CKey, DKey, EKey, FKey, GKey, HKey, IKey, JKey, KKey, LKey, MKey, NKey, OKey, PKey, QKey, RKey, SKey, TKey, UKey, VKey, WKey, XKey, YKey, ZKey]
         letterLabels = [firstLetLabel, secondLetLabel, thirdLetLabel, fourthLetLabel, fifthLetLabel]
         currentLabel = firstLetLabel
-        roundObjects()
+            //roundObjects()
         if targetWord == "HI" {
             targetWord = wordOptions.randomElement() ?? ""
         }
-       // errorLabel.text = ""
-        errorLabel.text = targetWord
+        errorLabel.text = ""
         allGuessesText.text = ""
         allGuessedWords = ""
         scrollLabel.text = ""
@@ -137,12 +136,9 @@ class MessagesViewController: MSMessagesAppViewController {
         
         if presentationStyle == .compact {
             compactView.backgroundColor = .white
-            swipeUpLabel.text = "^^^^\nSwipe Up to Play Word Guess!"
-            swipeUpLabel.textColor = UIColor.black
         }
         if presentationStyle == .expanded {
             compactView.isHidden = true
-            swipeUpLabel.isHidden = true
         }
     }
     
@@ -415,11 +411,6 @@ class MessagesViewController: MSMessagesAppViewController {
             allTargetLets = [firstTargetLet, secondTargetLet, thirdTargetLet, fourthTargetLet, fifthTargetLet]
         
         labelColorsTrial()
-//        setOneLabelColor(targetLet: firstTargetLet, letterLabel: firstLetLabel, delay: 0.2)
-//        setOneLabelColor(targetLet: secondTargetLet, letterLabel: secondLetLabel, delay: 0.5)
-//        setOneLabelColor(targetLet: thirdTargetLet, letterLabel: thirdLetLabel, delay: 0.8)
-//        setOneLabelColor(targetLet: fourthTargetLet, letterLabel: fourthLetLabel, delay: 1.1)
-//        setOneLabelColor(targetLet: fifthTargetLet, letterLabel: fifthLetLabel, delay: 1.4)
         
     }
     
@@ -492,7 +483,7 @@ class MessagesViewController: MSMessagesAppViewController {
         var m = 0
         for letter in allTargetLets {
             
-            if (firstLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == firstLetLabel.text) {
+            if (firstLetLabel.text != firstTargetLet && letter == firstLetLabel.text) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [self] in
                     firstLetLabel.backgroundColor = UIColor(named: "customYellow")
                     setKeyColor(keyLetter: firstLetLabel.text ?? "", color: 2)
@@ -504,7 +495,7 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         var n = 0
         for letter in allTargetLets {
-            if (secondLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == secondLetLabel.text) {
+            if (secondLetLabel.text != secondTargetLet && letter == secondLetLabel.text) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
                     secondLetLabel.backgroundColor = UIColor(named: "customYellow")
                     setKeyColor(keyLetter: secondLetLabel.text ?? "", color: 2)
@@ -516,7 +507,7 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         var o = 0
         for letter in allTargetLets {
-            if (thirdLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == thirdLetLabel.text) {
+            if (thirdLetLabel.text != thirdTargetLet && letter == thirdLetLabel.text) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [self] in
                     thirdLetLabel.backgroundColor = UIColor(named: "customYellow")
                     setKeyColor(keyLetter: thirdLetLabel.text ?? "", color: 2)
@@ -528,7 +519,7 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         var p = 0
         for letter in allTargetLets {
-            if (fourthLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == fourthLetLabel.text) {
+            if (fourthLetLabel.text != fourthTargetLet && letter == fourthLetLabel.text) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) { [self] in
                     fourthLetLabel.backgroundColor = UIColor(named: "customYellow")
                     setKeyColor(keyLetter: fourthLetLabel.text ?? "", color: 2)
@@ -540,7 +531,7 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         var q = 0
         for letter in allTargetLets {
-            if (fifthLetLabel.backgroundColor != UIColor(named: "customGreen") && letter == fifthLetLabel.text) {
+            if (fifthLetLabel.text != fifthTargetLet && letter == fifthLetLabel.text) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [self] in
                     fifthLetLabel.backgroundColor = UIColor(named: "customYellow")
                     setKeyColor(keyLetter: fifthLetLabel.text ?? "", color: 2)
@@ -832,8 +823,6 @@ class MessagesViewController: MSMessagesAppViewController {
         }
 
         setGuessLabels()
-        //allGuessesLabel.text = allGuessedWords
-            //allGuessesLabel.textColor = UIColor.black
         
         
 
@@ -842,14 +831,6 @@ class MessagesViewController: MSMessagesAppViewController {
     func gameWon() {
         
         scrollLabel.text = ""
-//        myMutableString = NSMutableAttributedString(string: "GAME  OVER")
-//        myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
-//        myMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(0, myMutableString.length))
-//        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 32), range: NSMakeRange(0, myMutableString.length))
-//        let paragraph = NSMutableParagraphStyle()
-//        paragraph.alignment = .center
-//        myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
-//        allGuessesText.attributedText = myMutableString
         
         
         firstLetLabel.text = getWordLetter(num: 0, word: targetWord)
@@ -898,20 +879,20 @@ class MessagesViewController: MSMessagesAppViewController {
         }
         
         myMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(0, myMutableString.length))
-        myMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 34), range: NSMakeRange(0, myMutableString.length))
+        myMutableString.addAttribute(.font, value: UIFont(name: "Menlo", size: 34), range: NSMakeRange(0, myMutableString.length))
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = .center
         myMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(0, myMutableString.length))
         
         if (didWin == "y") {
             
-            gameOverMutableString = NSMutableAttributedString(string: "\n\nGAME OVER")
-            gameOverMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(2, gameOverMutableString.length-2))
-            gameOverMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(2, gameOverMutableString.length-2))
-            gameOverMutableString.addAttribute(.font, value: UIFont(name: "Helvetica Neue", size: 34), range: NSMakeRange(2, gameOverMutableString.length-2))
+            gameOverMutableString = NSMutableAttributedString(string: "\n\n\n\nGAME OVER")
+            gameOverMutableString.addAttribute(.foregroundColor, value: UIColor.white, range: NSMakeRange(4, gameOverMutableString.length-4))
+            gameOverMutableString.addAttribute(.backgroundColor, value: UIColor(named: "customRed"), range: NSMakeRange(4, gameOverMutableString.length-4))
+            gameOverMutableString.addAttribute(.font, value: UIFont(name: "Menlo", size: 34), range: NSMakeRange(4, gameOverMutableString.length-4))
             let paragraph = NSMutableParagraphStyle()
             paragraph.alignment = .center
-            gameOverMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(2, gameOverMutableString.length-2))
+            gameOverMutableString.addAttribute(.paragraphStyle, value: paragraph, range: NSMakeRange(4, gameOverMutableString.length-4))
             
             myMutableString.append(gameOverMutableString)
             allGuessesText.attributedText = myMutableString
@@ -985,7 +966,6 @@ class MessagesViewController: MSMessagesAppViewController {
         
         if presentationStyle == .expanded {
             compactView.isHidden = true
-            swipeUpLabel.isHidden = true
         }
     
         // Use this method to finalize any behaviors associated with the change in presentation style.
