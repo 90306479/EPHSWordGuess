@@ -115,6 +115,7 @@ class MessagesViewController: MSMessagesAppViewController {
     var allLetterColors: String = ""
     
     
+    @IBOutlet weak var scrollView: UITextView!
     
     
     override func viewDidLoad() {
@@ -131,6 +132,7 @@ class MessagesViewController: MSMessagesAppViewController {
         scrollLabel.text = ""
         
         var numOfLetters: Int = 0
+        
         
         super.viewDidLoad()
         
@@ -810,9 +812,9 @@ class MessagesViewController: MSMessagesAppViewController {
             }
         
         
-        if numOfGuesses > 3 {
-            scrollLabel.text = "Previous Guesses^^"
-        }
+//        if numOfGuesses > 2 {
+//            scrollLabel.text = "Scroll to see previous guesses^^"
+//        }
         
         setAllKeyColors()
         
