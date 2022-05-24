@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E7537BD27C93D0200088597 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537BC27C93D0200088597 /* Assets.xcassets */; };
-		5E7537C327C93D0300088597 /* MessageApp MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5E7537C227C93D0300088597 /* MessageApp MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5E357EFD283D30F0009A3E93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537BC27C93D0200088597 /* Assets.xcassets */; };
+		5E7537C327C93D0300088597 /* Friendle! MessagesExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5E7537C227C93D0300088597 /* Friendle! MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5E7537C827C93D0300088597 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7537C727C93D0300088597 /* Messages.framework */; };
 		5E7537CB27C93D0300088597 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7537CA27C93D0300088597 /* MessagesViewController.swift */; };
 		5E7537CE27C93D0300088597 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E7537CC27C93D0300088597 /* MainInterface.storyboard */; };
@@ -33,7 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5E7537C327C93D0300088597 /* MessageApp MessagesExtension.appex in Embed App Extensions */,
+				5E7537C327C93D0300088597 /* Friendle! MessagesExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -41,16 +41,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5E7537B927C93CFE00088597 /* MessageApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessageApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7537B927C93CFE00088597 /* Friendle!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Friendle!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7537BC27C93D0200088597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5E7537C227C93D0300088597 /* MessageApp MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MessageApp MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E7537C227C93D0300088597 /* Friendle! MessagesExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Friendle! MessagesExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E7537C727C93D0300088597 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		5E7537CA27C93D0300088597 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		5E7537CD27C93D0300088597 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		5E7537CF27C93D0500088597 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E7537D127C93D0500088597 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5ECC5E11280883E80005E6E4 /* popUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = popUpViewController.swift; sourceTree = "<group>"; };
-		5EED280427F756A0001624A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5EED280427F756A0001624A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +68,8 @@
 		5E7537B227C93CFE00088597 = {
 			isa = PBXGroup;
 			children = (
-				5E7537BB27C93CFE00088597 /* MessageApp */,
-				5E7537C927C93D0300088597 /* MessageApp MessagesExtension */,
+				5E7537BB27C93CFE00088597 /* Friendle! */,
+				5E7537C927C93D0300088597 /* Friendle! MessagesExtension */,
 				5E7537C627C93D0300088597 /* Frameworks */,
 				5E7537BA27C93CFE00088597 /* Products */,
 			);
@@ -78,19 +78,19 @@
 		5E7537BA27C93CFE00088597 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5E7537B927C93CFE00088597 /* MessageApp.app */,
-				5E7537C227C93D0300088597 /* MessageApp MessagesExtension.appex */,
+				5E7537B927C93CFE00088597 /* Friendle!.app */,
+				5E7537C227C93D0300088597 /* Friendle! MessagesExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		5E7537BB27C93CFE00088597 /* MessageApp */ = {
+		5E7537BB27C93CFE00088597 /* Friendle! */ = {
 			isa = PBXGroup;
 			children = (
 				5EED280427F756A0001624A5 /* Info.plist */,
 				5E7537BC27C93D0200088597 /* Assets.xcassets */,
 			);
-			path = MessageApp;
+			path = "Friendle!";
 			sourceTree = "<group>";
 		};
 		5E7537C627C93D0300088597 /* Frameworks */ = {
@@ -101,7 +101,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5E7537C927C93D0300088597 /* MessageApp MessagesExtension */ = {
+		5E7537C927C93D0300088597 /* Friendle! MessagesExtension */ = {
 			isa = PBXGroup;
 			children = (
 				5E7537CA27C93D0300088597 /* MessagesViewController.swift */,
@@ -110,15 +110,15 @@
 				5E7537CF27C93D0500088597 /* Assets.xcassets */,
 				5E7537D127C93D0500088597 /* Info.plist */,
 			);
-			path = "MessageApp MessagesExtension";
+			path = "Friendle! MessagesExtension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5E7537B827C93CFE00088597 /* MessageApp */ = {
+		5E7537B827C93CFE00088597 /* Friendle! */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E7537D827C93D0500088597 /* Build configuration list for PBXNativeTarget "MessageApp" */;
+			buildConfigurationList = 5E7537D827C93D0500088597 /* Build configuration list for PBXNativeTarget "Friendle!" */;
 			buildPhases = (
 				5E7537B727C93CFE00088597 /* Resources */,
 				5E7537D727C93D0500088597 /* Embed App Extensions */,
@@ -128,14 +128,14 @@
 			dependencies = (
 				5E7537C527C93D0300088597 /* PBXTargetDependency */,
 			);
-			name = MessageApp;
+			name = "Friendle!";
 			productName = MessageApp;
-			productReference = 5E7537B927C93CFE00088597 /* MessageApp.app */;
+			productReference = 5E7537B927C93CFE00088597 /* Friendle!.app */;
 			productType = "com.apple.product-type.application.messages";
 		};
-		5E7537C127C93D0300088597 /* MessageApp MessagesExtension */ = {
+		5E7537C127C93D0300088597 /* Friendle! MessagesExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5E7537D427C93D0500088597 /* Build configuration list for PBXNativeTarget "MessageApp MessagesExtension" */;
+			buildConfigurationList = 5E7537D427C93D0500088597 /* Build configuration list for PBXNativeTarget "Friendle! MessagesExtension" */;
 			buildPhases = (
 				5E7537BE27C93D0300088597 /* Sources */,
 				5E7537BF27C93D0300088597 /* Frameworks */,
@@ -145,9 +145,9 @@
 			);
 			dependencies = (
 			);
-			name = "MessageApp MessagesExtension";
+			name = "Friendle! MessagesExtension";
 			productName = "MessageApp MessagesExtension";
-			productReference = 5E7537C227C93D0300088597 /* MessageApp MessagesExtension.appex */;
+			productReference = 5E7537C227C93D0300088597 /* Friendle! MessagesExtension.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
 		};
 /* End PBXNativeTarget section */
@@ -168,7 +168,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "Friendle" */;
+			buildConfigurationList = 5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "Friendle!" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -181,8 +181,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5E7537B827C93CFE00088597 /* MessageApp */,
-				5E7537C127C93D0300088597 /* MessageApp MessagesExtension */,
+				5E7537B827C93CFE00088597 /* Friendle! */,
+				5E7537C127C93D0300088597 /* Friendle! MessagesExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -192,7 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E7537BD27C93D0200088597 /* Assets.xcassets in Resources */,
+				5E357EFD283D30F0009A3E93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +222,7 @@
 /* Begin PBXTargetDependency section */
 		5E7537C527C93D0300088597 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 5E7537C127C93D0300088597 /* MessageApp MessagesExtension */;
+			target = 5E7537C127C93D0300088597 /* Friendle! MessagesExtension */;
 			targetProxy = 5E7537C427C93D0300088597 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -360,8 +360,8 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 883DK65VTV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MessageApp MessagesExtension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = MessageApp;
+				INFOPLIST_FILE = "Friendle! MessagesExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Friendle!";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -385,8 +385,8 @@
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 883DK65VTV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MessageApp MessagesExtension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = MessageApp;
+				INFOPLIST_FILE = "Friendle! MessagesExtension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Friendle!";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -411,7 +411,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 883DK65VTV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MessageApp/Info.plist;
+				INFOPLIST_FILE = "Friendle!/Info.plist";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -432,7 +432,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 883DK65VTV;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MessageApp/Info.plist;
+				INFOPLIST_FILE = "Friendle!/Info.plist";
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -448,7 +448,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "Friendle" */ = {
+		5E7537B627C93CFE00088597 /* Build configuration list for PBXProject "Friendle!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7537D227C93D0500088597 /* Debug */,
@@ -457,7 +457,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E7537D427C93D0500088597 /* Build configuration list for PBXNativeTarget "MessageApp MessagesExtension" */ = {
+		5E7537D427C93D0500088597 /* Build configuration list for PBXNativeTarget "Friendle! MessagesExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7537D527C93D0500088597 /* Debug */,
@@ -466,7 +466,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5E7537D827C93D0500088597 /* Build configuration list for PBXNativeTarget "MessageApp" */ = {
+		5E7537D827C93D0500088597 /* Build configuration list for PBXNativeTarget "Friendle!" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5E7537D927C93D0500088597 /* Debug */,
